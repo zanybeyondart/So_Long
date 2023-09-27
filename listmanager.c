@@ -28,7 +28,7 @@ char *pather(char *main, int frame, char *ext, char *path)
 	}
 }
 
-void add_next_frame(t_vars *vars, char *path, animation *sprite)
+void add_frame_helper(t_vars *vars, char *path, animation *sprite)
 {
 	animation	*temp;
 	while(sprite->next)
@@ -38,15 +38,12 @@ void add_next_frame(t_vars *vars, char *path, animation *sprite)
 	sprite->next = temp;
 }
 
-void assign_anim(t_vars *vars, char *path)
+void add_frames(t_vars *vars, char *path, animation *sprite)
 {
-	printf("%s\n", path);
-	if(!vars->p1->idle)
-    vars->p1->idle = malloc(sizeof(animation));
-    if(!vars->p1->idle->img)
-    vars->p1->idle->img = mlx_xpm_file_to_image(vars->mlx, path, &vars->p1->idle->w, &vars->p1->idle->h);
+	if(!sprite->img)
+    sprite->img = mlx_xpm_file_to_image(vars->mlx, path, &sprite->w, &sprite->h);
 	else
-	add_next_frame(vars, path, vars->p1->idle);
+	add_frame_helper(vars, path, sprite);
 	free(path);
 }
 

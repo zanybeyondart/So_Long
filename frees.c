@@ -15,10 +15,18 @@ void free_player(player *p) {
 		}
 }
 
+void free_wall(game *game) {
+    if (game) {
+        free(game->img);
+        free(game);
+        }
+    }
+
 void free_vars(t_vars *vars) {
     if (vars)
 	{
 		free_player(vars->p1);
+		free_wall(vars->game);
         free(vars);
 	}
 }
