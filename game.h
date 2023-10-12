@@ -58,6 +58,7 @@ typedef struct	s_vars {
 	player	*p1;
 	map *map;
 	game *game;
+	animation *food;
 } t_vars;
 
 typedef struct map{
@@ -73,7 +74,6 @@ typedef struct map{
 void quit(t_vars *vars);
 int events(int keycode, t_vars *vars);
 int callbacks(t_vars *vars);
-int wall (t_vars *vars);
 int game_start(int **mat, int *rc);
 
 
@@ -110,6 +110,8 @@ char *pather(char *main, int frame, char *ext, char *path);
 // DISLPAY.C
 void d_anim(t_vars *vars, animation *sprite);
 void d_anim_helper(t_vars *vars, animation *temp);
+void wall (t_vars *vars);
+
 
 //MAPS.C
 

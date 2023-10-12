@@ -1,5 +1,9 @@
 {
 	"files.associations": {
-		"mlx.h": "c"
+		"mlx.h": "c",
+		"limits": "c",
+		"ratio": "c",
+		"chrono": "c",
+		"algorithm": "c"
 	}
 }

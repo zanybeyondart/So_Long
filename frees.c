@@ -37,6 +37,7 @@ void free_vars(t_vars *vars) {
 		free_player(vars->p1);
 		free_wall(vars->game);
 		free_map(vars->map);
+		free_animation(vars->food);
         free(vars);
 	}
 }

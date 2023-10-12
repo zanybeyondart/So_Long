@@ -30,8 +30,6 @@ int pos_check_2(int pc, int pv, int key, t_vars *vars, int *er)
 				min = j * vars->game->w;;
 				max = min + vars->game->w;;
 				bd = vars->p1->run->w;
-				// vars->game->x = j * vars->game->w;
-				// vars->game->y = i * vars->game->h;
 				if ((pv > m_min && pv < m_max) || (pv + m_bd > m_min && pv + m_bd < m_max))
 					if ((pc > min && pc < max)
 					|| (pc + bd > min && pc + bd < max)
@@ -61,8 +59,6 @@ int pos_check_2(int pc, int pv, int key, t_vars *vars, int *er)
 				min = i * vars->game->h;
 				max = min + vars->game->h;
 				bd = vars->p1->run->w;
-				// vars->game->x = j * vars->game->w;
-				// vars->game->y = i * vars->game->h;
 				if ((pv > m_min && pv < m_max) || (pv + m_bd > m_min && pv + m_bd < m_max))
 					if ((pc > min && pc < max)
 					|| (pc + bd > min && pc + bd < max)
@@ -79,16 +75,7 @@ int pos_check_2(int pc, int pv, int key, t_vars *vars, int *er)
 		}
 		j = 0;
 		i++;
-	}
-	// {
-	// 	m_min = wall->x;
-	// 	m_max = wall->x + wall->w;
-	// 	m_bd = p1->run->w;
-	// 	min = wall->y;
-	// 	max = wall->y + wall->h;
-	// 	bd = p1->run->h;
-	// }
-		
+	}	
 	return 1;
 }
 

@@ -1,5 +1,31 @@
 #include "game.h"
 
+int check_exit(t_vars *vars)
+{
+	int i = 0;
+	int j = 0;
+
+	while (i < vars->map->rc[0])
+	{
+		while (j < vars->map->rc[1])
+		{
+			if (vars->map->mat[i][j] == C)
+			{
+				if ((vars->p1->y > i * vars->game->h && vars->p1->y < i * vars->game->h + vars->food->h)
+				|| (vars->p1->y > i * vars->game->h && vars->p1->y <  i * vars->game->h + vars->food->h))
+				if ((vars->p1->x  > j * vars->game->w && vars->p1->x < j * vars->game->w + vars->food->w)
+				|| (vars->p1->x + vars->p1->idle->w > j * vars->game->w
+				&& vars->p1->x + vars->p1->idle->w < j * vars->game->w + vars->food->w)
+				)
+				vars->map->mat[i][j] = 0;
+			}
+			j++;
+		}
+		j = 0;
+		i++;
+	}
+}
+
 void quit(t_vars *vars)
 {
 	mlx_destroy_window(vars->mlx, vars->win);
@@ -17,32 +43,11 @@ int events(int keycode, t_vars *vars)
 	return(0);
 }
 
-int wall (t_vars *vars)
-{
-	int i = 0;
-	int j = 0;
-	while(i < vars->map->rc[0])
-	{
-		while (j < vars->map->rc[1])
-		{
-			if (vars->map->mat[i][j] == 1)
-			{
-			vars->game->x = j * vars->game->w;
-			vars->game->y = i * vars->game->h;
-			mlx_put_image_to_window(vars->mlx, vars->win, vars->game->img, vars->game->x, vars->game->y);
-			}
-			j++;
-		}
-		j = 0;
-		i++;
-	}
-	return 0;
-}
 
 int callbacks(t_vars *vars)
 {
 	loadplayers(vars);
-	// wall(vars);
+	check_exit(vars);
 	if(vars->p1->move == 0)
 	d_anim(vars, vars->p1->idle);
 	if(vars->p1->move == 1)

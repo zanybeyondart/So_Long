@@ -1,5 +1,24 @@
 #include "game.h"
 
+void load_food(t_vars *vars, animation *food)
+{
+	static int i;
+	char *path;
+
+	path = NULL;
+	while(i != -1)
+	{
+	path = pather("./textures/food/food", i, ".xpm", path);
+	if (path == NULL)
+	i = -1;
+	else
+	{
+	add_frames(vars, path, food);
+	i++;
+	}
+	}
+}
+
 void load_anim_idle(t_vars *vars, animation *sprite)
 {
 	static int i;
@@ -74,6 +93,12 @@ int loadplayers(t_vars *vars)
 	{
 	vars->p1->run = malloc(sizeof(animation));
 	load_anim_run(vars, vars->p1->run);
+	}
+	if (!vars->food)
+	{
+		vars->food = malloc(sizeof(animation));
+		printf("going in\n");
+		load_food(vars, vars->food);
 	}
 	return(0);
 }
