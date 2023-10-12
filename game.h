@@ -7,7 +7,7 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <strings.h>
-#include "./GNL/get_next_line.h"
+#include "./get_next_line/get_next_line.h"
 
 #define MLX_SYNC_IMAGE_WRITABLE		1
 #define MLX_SYNC_WIN_FLUSH_CMD		2

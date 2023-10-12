@@ -18,5 +18,5 @@ fclean: clean
 		rm -f $(NAME)
 
 c: all clean
-		cc maps.c game.a ./GNL/gnl.a -Lmlx -lmlx -framework OpenGL -framework AppKit
+		cc maps.c game.a ./get_next_line/gnl.a -Lmlx -lmlx -framework OpenGL -framework AppKit
 		# ./a.out
