@@ -19,22 +19,30 @@ int events(int keycode, t_vars *vars)
 
 int wall (t_vars *vars)
 {
-	if(!vars->game)
+	int i = 0;
+	int j = 0;
+	while(i < vars->map->rc[0])
 	{
-	vars->game = malloc (sizeof(game));
-	vars->game->img = mlx_xpm_file_to_image(vars->mlx, "./textures/Walls/PNG/wall.xpm", &vars->game->w, &vars->game->h);
-	vars->game->x = 120;
-	vars->game->y = 120;
-
+		while (j < vars->map->rc[1])
+		{
+			if (vars->map->mat[i][j] == 1)
+			{
+			vars->game->x = j * vars->game->w;
+			vars->game->y = i * vars->game->h;
+			mlx_put_image_to_window(vars->mlx, vars->win, vars->game->img, vars->game->x, vars->game->y);
+			}
+			j++;
+		}
+		j = 0;
+		i++;
 	}
-	mlx_put_image_to_window(vars->mlx, vars->win, vars->game->img, vars->game->x, vars->game->y);
-	mlx_do_sync(vars->mlx);
+	return 0;
 }
 
 int callbacks(t_vars *vars)
 {
 	loadplayers(vars);
-	wall(vars);
+	// wall(vars);
 	if(vars->p1->move == 0)
 	d_anim(vars, vars->p1->idle);
 	if(vars->p1->move == 1)
@@ -46,19 +54,21 @@ int on_release(int keycode, t_vars *vars)
 {
 	if (keycode == 13 || keycode == 0 || keycode == 1 || keycode == 2 )
 	vars->p1->move = 0;
+	return 0;
 }
 
-int main(void)
+int game_start(int **mat, int *rc)
 {
     t_vars  *vars;
 	vars = malloc(sizeof(t_vars));
+	vars->map = malloc(sizeof(map));
+	vars->map->mat = mat;
+	vars->map->rc = rc;
     vars->mlx = mlx_init();
-    vars->win = mlx_new_window(vars->mlx, 500, 500, "HELLO");
+    vars->win = mlx_new_window(vars->mlx, rc[1] * 60, rc[0] * 60, "HELLO");
 	mlx_loop_hook(vars->mlx, callbacks, vars);
 	mlx_hook(vars->win, 2, 0, events, vars);
 	mlx_hook(vars->win, 3, 0, on_release, vars);
-
     mlx_loop(vars->mlx);
 	return (0);
 }
-
