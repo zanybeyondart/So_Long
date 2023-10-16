@@ -1,6 +1,7 @@
 #include "game.h"
 
-void free_animation(animation *anim) {
+void free_animation(animation *anim)
+{
     if (anim) {
 		free_animation(anim->next);
         free(anim->img);
@@ -16,7 +17,15 @@ void free_player(player *p) {
 		}
 }
 
-void free_wall(game *game) {
+void free_portal(portal *p) {
+    if (p) {
+		free_animation(p->disabled);
+		free_animation(p->enabled);
+		free(p);
+		}
+}
+
+void free_game(game *game) {
     if (game) {
         free(game->img);
         free(game);
@@ -35,7 +44,8 @@ void free_vars(t_vars *vars) {
     if (vars)
 	{
 		free_player(vars->p1);
-		free_wall(vars->game);
+		free_portal(vars->exit);
+		free_animation(vars->wall);
 		free_map(vars->map);
 		free_animation(vars->food);
         free(vars);

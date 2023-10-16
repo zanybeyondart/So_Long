@@ -4,6 +4,9 @@
 		"limits": "c",
 		"ratio": "c",
 		"chrono": "c",
-		"algorithm": "c"
+		"algorithm": "c",
+		"game.h": "c",
+		"ios": "c",
+		"__string": "c"
 	}
 }

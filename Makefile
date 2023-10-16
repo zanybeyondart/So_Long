@@ -1,7 +1,7 @@
 CC = cc
 # CFLAGS = -Wall -Werror -Wextra
 NAME = game.a
-SRC = game.c frees.c listmanager.c position_helpers.c displays.c loaders.c maps.c
+SRC = game.c frees.c listmanager.c position_helpers.c displays.c loaders.c maps.c wall.c utilites.c
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)

@@ -1,23 +1,44 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   displays.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/14 16:48:11 by zvakil            #+#    #+#             */
+/*   Updated: 2023/10/15 14:56:58 by zvakil           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "game.h"
 
-void food (t_vars *vars)
+void main_display(t_vars *vars)
 {
-	int i = 0;
-	int j = 0;
-	animation *temp;
+	wall_set(vars);
+	food_rend(vars);
+}
+
+void	food_rend(t_vars *vars)
+{
+	int			i;
+	int			j;
+	animation	*temp;
+
+	i = 0;
+	j = 0;
 	temp = vars->food;
 	while(i < vars->map->rc[0])
 	{
 		while (j < vars->map->rc[1])
 		{
 			if (vars->map->mat[i][j] == C)
-			{
-			mlx_put_image_to_window(vars->mlx, vars->win, temp->img, j * vars->game->w + 10, i * vars->game->h + 10);
-			if (temp->next)
-			temp = temp->next;
-			else 
-			temp = vars->food;
-			}
+				mlx_put_image_to_window(vars->mlx, vars->win, temp->img, j * vars->wall->w + 10, i * vars->wall->h + 10);
+			if (temp->next && vars->map->mat[i][j] == -90)
+				temp = temp->next;
+			else if (temp->next)
+				temp = temp->next;
+			else
+				temp = vars->food;
 			j++;
 		}
 		j = 0;
@@ -25,59 +46,45 @@ void food (t_vars *vars)
 	}
 }
 
-void wall (t_vars *vars)
+void	wall_rend(t_vars *vars, int x, int y, int index)
 {
-	int i = 0;
-	int j = 0;
-	while(i < vars->map->rc[0])
-	{
-		while (j < vars->map->rc[1])
-		{
-			if (vars->map->mat[i][j] == 1)
-			{
-			vars->game->x = j * vars->game->w;
-			vars->game->y = i * vars->game->h;
-			mlx_put_image_to_window(vars->mlx, vars->win, vars->game->img, vars->game->x, vars->game->y);
-			}
-			j++;
-		}
-		j = 0;
-		i++;
-	}
+	int i;
+	animation *temp;
+
+	i = 0;
+	temp = vars->wall;
+	while (i++ < index)
+	temp = temp->next;
+	mlx_put_image_to_window(vars->mlx, vars->win, temp->img, x, y);
 }
 
-void d_anim_helper(t_vars *vars, animation *temp)
+void	d_anim_helper(t_vars *vars, void *img, int x, int y)
 {
-	static int y = 0;
-	if (y % 8 == 0 && vars->p1->move == 0)
-	{
-	mlx_clear_window(vars->mlx, vars->win);
-	wall(vars);
-	food(vars);
-	mlx_put_image_to_window(vars->mlx, vars->win, temp->img, (vars->p1->x), (vars->p1->y));
-	mlx_put_image_to_window(vars->mlx, vars->win, vars->game->img, vars->game->x, vars->game->y);
+	static int	i;
 
-	}
-	if (y % 8 == 0 && vars->p1->move == 1)
+	i = 0;
+	if (i % 25 == 0 && vars->p1->move == 0)
 	{
-	mlx_clear_window(vars->mlx, vars->win);
-	wall(vars);
-	food(vars);
-	mlx_put_image_to_window(vars->mlx, vars->win, temp->img, (vars->p1->x), (vars->p1->y));
-	mlx_put_image_to_window(vars->mlx, vars->win, vars->game->img, vars->game->x, vars->game->y);
+		mlx_put_image_to_window(vars->mlx, vars->win, img, x, y);
 	}
-	mlx_do_sync(vars->mlx);
-	y++;
-	if (y > 1000000)
-	y = 0;
-
+	if (i % 8 == 0 && vars->p1->move == 1)
+	{
+		mlx_put_image_to_window(vars->mlx, vars->win, img, x, y);
+	}
+	i++;
+	if (i > 1000000)
+		i = 0;
 }
 
-void d_anim(t_vars *vars, animation *sprite)
-{
-	while (sprite)
-	{
-		d_anim_helper(vars, sprite);
-		sprite = sprite->next;
-	}
-}
+// void d_anim(t_vars *vars, animation *sprite)
+// {
+// 	while (sprite)
+// 	{
+// 		mlx_clear_window(vars->mlx, vars->win);
+// 		main_display(vars);
+// 		d_anim_helper(vars, sprite);
+// 		mlx_do_sync(vars->mlx);
+// 		sprite = sprite->next;
+// 	}
+// }
+
