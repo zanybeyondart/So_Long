@@ -7,6 +7,7 @@
 		"algorithm": "c",
 		"game.h": "c",
 		"ios": "c",
-		"__string": "c"
+		"__string": "c",
+		"strings.h": "c"
 	}
 }

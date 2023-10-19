@@ -6,11 +6,33 @@
 /*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 15:08:09 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/15 10:37:54 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/10/18 17:45:30 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game.h"
+
+void	wall_set_2(t_vars *vars, int i, int j)
+{
+	if ((i == 0 && j == 0) || (i == 0 && j == vars->map->rc[1] - 1)
+		|| (i == vars->map->rc[0] - 1 && j == 0)
+		|| (i == vars->map->rc[0] - 1 && j == vars->map->rc[1] - 1))
+	{
+		wall_rend(vars, j * vars->wall->w, i * vars->wall->h, 0);
+	}
+	else if (i != 0 && i != vars->map->rc[0] - 1
+		&& (j == 0 || j == vars->map->rc[1] - 1))
+	{
+		wall_rend(vars, j * vars->wall->w, i * vars->wall->h, 2);
+	}
+	else if (i == 0 || i == vars->map->rc[0] - 1
+		&& (j != 0 || j != vars->map->rc[1] - 1))
+	{
+		wall_rend(vars, j * vars->wall->w, i * vars->wall->h, 1);
+	}
+	else
+		wall_rend(vars, j * vars->wall->w, i * vars->wall->h, 3);
+}
 
 void	wall_set(t_vars *vars)
 {
@@ -19,23 +41,12 @@ void	wall_set(t_vars *vars)
 
 	i = 0;
 	j = 0;
-	while(i < vars->map->rc[0])
+	while (i < vars->map->rc[0])
 	{
 		while (j < vars->map->rc[1])
 		{
 			if (vars->map->mat[i][j] == 1)
-				if ((i == 0 && j == 0) || (i == 0 && j == vars->map->rc[1] - 1)
-					|| (i == vars->map->rc[0] - 1 && j == 0)
-					|| (i == vars->map->rc[0] - 1 && j == vars->map->rc[1] - 1))
-					wall_rend(vars, j * vars->wall->w, i * vars->wall->h, 0);
-				else if (i != 0 && i != vars->map->rc[0] - 1
-					&& (j == 0 || j == vars->map->rc[1] - 1))
-					wall_rend(vars, j * vars->wall->w, i * vars->wall->h, 2);
-				else if (i == 0 || i == vars->map->rc[0] - 1
-					&& (j != 0 || j != vars->map->rc[1] - 1))
-					wall_rend(vars, j * vars->wall->w, i * vars->wall->h, 1);
-				else
-					wall_rend(vars, j * vars->wall->w, i * vars->wall->h, 3);
+				wall_set_2(vars, i, j);
 			j++;
 		}
 		j = 0;
@@ -68,7 +79,6 @@ box	wall_bound(t_vars *vars, int key, int i, int j)
 	return (temp);
 }
 
-
 void	list_wall(t_vars *vars, animation *wall)
 {
 	static int	i;
@@ -86,4 +96,16 @@ void	list_wall(t_vars *vars, animation *wall)
 			i++;
 		}
 	}
+}
+
+void	wall_rend(t_vars *vars, int x, int y, int index)
+{
+	int			i;
+	animation	*temp;
+
+	i = 0;
+	temp = vars->wall;
+	while (i++ < index)
+		temp = temp->next;
+	mlx_put_image_to_window(vars->mlx, vars->win, temp->img, x, y);
 }

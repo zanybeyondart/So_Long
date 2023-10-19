@@ -6,7 +6,7 @@
 /*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 11:08:58 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/16 18:40:25 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/10/19 08:48:05 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,56 +29,6 @@ int	check_inter(box temp, int pv, int pc)
 	return (0);
 }
 
-box	col_bound(t_vars *vars, int key, int i, int j)
-{
-	box	temp;
-
-	if (key == A || key == D)
-	{
-		temp.m_min = j * vars->wall->w;
-		temp.m_max = temp.m_min + vars->food->w;
-		temp.m_bd = vars->p1->run->h;
-		temp.min = i * vars->wall->h;
-		temp.max = temp.min + vars->food->h;
-		temp.bd = vars->p1->run->w;
-	}
-	if (key == W || key == S)
-	{
-		temp.m_min = i * vars->wall->h;
-		temp.m_max = temp.m_min + vars->food->h;
-		temp.m_bd = vars->p1->run->h;
-		temp.min = j * vars->wall->w;
-		temp.max = temp.min + vars->food->w;
-		temp.bd = vars->p1->run->w;
-	}
-	return (temp);
-}
-
-box	exit_bound(t_vars *vars, int key, int i, int j)
-{
-	box	temp;
-
-	if (key == A || key == D)
-	{
-		temp.m_min = j * vars->wall->w;
-		temp.m_max = temp.m_min + vars->exit->enabled->w;
-		temp.m_bd = vars->p1->run->h;
-		temp.min = i * vars->wall->h;
-		temp.max = temp.min + vars->exit->enabled->h;
-		temp.bd = vars->p1->run->w;
-	}
-	if (key == W || key == S)
-	{
-		temp.m_min = i * vars->wall->h;
-		temp.m_max = temp.m_min + vars->exit->enabled->h;
-		temp.m_bd = vars->p1->run->h;
-		temp.min = j * vars->wall->w;
-		temp.max = temp.min + vars->exit->enabled->w;
-		temp.bd = vars->p1->run->w;
-	}
-	return (temp);
-}
-
 int	pos_check_1(int pc, int pv, int key, t_vars *vars)
 {
 	int	i;
@@ -91,13 +41,13 @@ int	pos_check_1(int pc, int pv, int key, t_vars *vars)
 		while (j < vars->map->rc[1])
 		{
 			if (vars->map->mat[i][j] == 1
-				&& check_inter(wall_bound (vars, key, i , j), pv, pc))
+				&& check_inter(wall_bound(vars, key, i, j), pv, pc))
 				return (0);
 			if (vars->map->mat[i][j] == C
-				&& check_inter(col_bound (vars, key, i , j), pv, pc))
+				&& check_inter(col_bound(vars, key, i, j), pv, pc))
 				vars->map->mat[i][j] = -90;
 			if (vars->map->mat[i][j] == E
-				&& check_inter(col_bound (vars, key, i , j), pv, pc)
+				&& check_inter(col_bound(vars, key, i, j), pv, pc)
 				&& vars->exit->exit == 1)
 				quit(vars);
 			j++;
@@ -105,31 +55,23 @@ int	pos_check_1(int pc, int pv, int key, t_vars *vars)
 		j = 0;
 		i++;
 	}
+	printf("%d\n", ++vars->p1->move_count);
 	return (1);
 }
-
 
 void	update_pos(int keycode, player *p1, t_vars *vars)
 {
 	if (keycode == W)
-	{
 		if (pos_check_1(p1->x, p1->y - SPEED, keycode, vars))
 			p1->y -= SPEED;
-	}
-	else if (keycode == S)
-	{
+	if (keycode == S)
 		if (pos_check_1(p1->x, p1->y + SPEED, keycode, vars))
 			p1->y += SPEED;
-	}
-	else if (keycode == A)
-	{
+	if (keycode == A)
 		if (pos_check_1(p1->y, p1->x - SPEED, keycode, vars))
 			p1->x -= SPEED;
-	}
-	else if (keycode == D)
-	{
+	if (keycode == D)
 		if (pos_check_1(p1->y, p1->x + SPEED, keycode, vars))
 			p1->x += SPEED;
-	}
 	p1->move = 1;
 }

@@ -6,182 +6,109 @@
 /*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 15:03:12 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/15 15:00:45 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/10/19 08:56:02 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game.h"
 
-void	load_food(t_vars *vars, animation *food)
+void	load_wall(t_vars *vars)
 {
-	static int	i;
-	char		*path;
-
-	path = NULL;
-	while (i != -1)
-	{
-		path = pather("./textures/food/food", i, ".xpm", path);
-		if (path == NULL)
-			i = -1;
-		else
-		{
-			add_frames (vars, path, food);
-			i++;
-		}
-	}
+	vars->wall = NULL;
+	vars->wall = malloc (sizeof(animation));
+	if (vars->wall == NULL)
+		malloc_er(vars, NULL, NULL);
+	list_wall(vars, vars->wall);
 }
 
-void	load_exit0(t_vars *vars, animation *food)
-{
-	static int	i;
-	char		*path;
-
-	path = NULL;
-	while (i != -1)
-	{
-		path = pather("./textures/exit/exit0/exit", i, ".xpm", path);
-		if (path == NULL)
-			i = -1;
-		else
-		{
-			add_frames (vars, path, food);
-			i++;
-		}
-	}
-}
-
-void	load_exit1(t_vars *vars, animation *food)
-{
-	static int	i;
-	char		*path;
-
-	path = NULL;
-	while (i != -1)
-	{
-		path = pather("./textures/exit/exit1/exit", i, ".xpm", path);
-		if (path == NULL)
-			i = -1;
-		else
-		{
-			add_frames (vars, path, food);
-			i++;
-		}
-	}
-}
-
-void	load_anim_idle(t_vars *vars, animation *sprite)
-{
-	static int	i;
-	char		*path;
-
-	path = NULL;
-	while (i != -1)
-	{
-		path = pather("./textures/Idle/PNG/idle", i, ".xpm", path);
-		if (path == NULL)
-			i = -1;
-		else
-		{
-			add_frames(vars, path, sprite);
-			i++;
-		}
-	}
-}
-
-void	load_anim_run(t_vars *vars, animation *sprite)
-{
-	static int	i;
-	char		*path;
-
-	path = NULL;
-	while (i != -1)
-	{
-		path = pather("./textures/run/PNG/run", i, ".xpm", path);
-		if (path == NULL)
-			i = -1;
-		else
-		{
-			add_frames(vars, path, sprite);
-			i++;
-		}
-	}
-}
-
-int	loadplayers(t_vars *vars)
+void	load_p1(t_vars *vars)
 {
 	int	i;
 	int	j;
 
 	i = 0;
 	j = 0;
-	if (!vars->wall)
+	vars->p1 = NULL;
+	vars->p1 = malloc(sizeof(player));
+	if (vars->p1 == NULL)
+		malloc_er(vars, NULL, NULL);
+	vars->p1->move_count = 0;
+	while (i < vars->map->rc[0])
 	{
-		vars->wall = malloc (sizeof(animation));
-		list_wall(vars, vars->wall);
-	}
-	if (!vars->p1)
-	{
-		vars->p1 = malloc(sizeof(player));
-		while (i < vars->map->rc[0])
+		while (j < vars->map->rc[1])
 		{
-			while (j < vars->map->rc[1])
+			if (vars->map->mat[i][j] == P)
 			{
-				if (vars->map->mat[i][j] == P)
-				{
-					vars->p1->x = j * vars->wall->w;
-					vars->p1->y = i * vars->wall->h;
-				}
-				j++;
+				vars->p1->x = j * vars->wall->w;
+				vars->p1->y = i * vars->wall->h;
 			}
-			j = 0;
-			i++;
+			j++;
 		}
-		i = 0;
 		j = 0;
+		i++;
 	}
-	if (!vars->p1->idle)
-	{
-		vars->p1->idle = malloc(sizeof(animation));
-		load_anim_idle(vars, vars->p1->idle);
-	}
-	if (!vars->p1->run)
-	{
-		vars->p1->run = malloc(sizeof(animation));
-		load_anim_run(vars, vars->p1->run);
-	}
-	if (!vars->food)
-	{
-		vars->food = malloc(sizeof(animation));
-		load_food(vars, vars->food);
-	}
-	if (!vars->exit)
-	{
-		vars->exit = malloc(sizeof(portal));
-		while (i < vars->map->rc[0])
-		{
-			while (j < vars->map->rc[1])
-			{
-				if (vars->map->mat[i][j] == E)
-				{
-					vars->exit->x = j * vars->wall->w;
-					vars->exit->y = i * vars->wall->h;
-				}
-				j++;
-			}
-			j = 0;
-			i++;
-		}
-	}
-	if (!vars->exit->disabled)
-	{
-		vars->exit->disabled = malloc(sizeof(animation));
-		load_exit0(vars, vars->exit->disabled);
-	}
-	if (!vars->exit->enabled)
-	{
-		vars->exit->enabled = malloc(sizeof(animation));
-		load_exit1(vars, vars->exit->enabled);
-	}
-	return (0);
 }
 
+void	load_exit(t_vars *vars)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	vars->exit = NULL;
+	vars->exit = malloc(sizeof(portal));
+	if (vars->exit == NULL)
+		malloc_er(vars, NULL, NULL);
+	while (i < vars->map->rc[0])
+	{
+		while (j < vars->map->rc[1])
+		{
+			if (vars->map->mat[i][j] == E)
+			{
+				vars->exit->x = j * vars->wall->w;
+				vars->exit->y = i * vars->wall->h;
+			}
+			j++;
+		}
+		j = 0;
+		i++;
+	}
+}
+
+void	load_exit_en_dis(t_vars *vars)
+{
+	vars->exit->disabled = NULL;
+	vars->exit->disabled = malloc(sizeof(animation));
+	if (vars->exit->disabled == NULL)
+		malloc_er(vars, NULL, NULL);
+	load_exit0(vars, vars->exit->disabled);
+	vars->exit->enabled = NULL;
+	vars->exit->enabled = malloc(sizeof(animation));
+	if (vars->exit->enabled == NULL)
+		malloc_er(vars, NULL, NULL);
+	load_exit1(vars, vars->exit->enabled);
+}
+
+int	loadplayers(t_vars *vars)
+{
+	if (!vars->wall)
+		load_wall(vars);
+	if (!vars->p1)
+		load_p1(vars);
+	if (!vars->exit)
+		load_exit(vars);
+	if (!vars->p1->idle && !vars->p1->run)
+		load_p1_anims(vars);
+	if (!vars->food)
+	{
+		vars->food = NULL;
+		vars->food = malloc(sizeof(animation));
+		if (vars->food == NULL)
+			malloc_er(vars, NULL, NULL);
+	load_food(vars, vars->food);
+	}
+	if (!vars->exit->enabled && !vars->exit->disabled)
+	load_exit_en_dis(vars);
+	return (0);
+}
