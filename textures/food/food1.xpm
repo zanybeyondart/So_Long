@@ -3,7 +3,7 @@ static char *food1[] = {
 /* columns rows colors chars-per-pixel */
 "40 40 216 2 ",
 "   c None",
-".  c #000000",
+".  c None",
 "X  c #06010C",
 "o  c #08020E",
 "O  c #0D0314",
