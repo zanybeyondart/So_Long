@@ -1,37 +1,32 @@
-CC = cc
-CFLAGS = -Wall -Werror -Wextra
-NAME = game.a
-SRC = ./src/game.c ./src/frees.c ./src/listmanager.c ./src/position_helpers.c ./src/displays.c ./src/loaders.c ./src/maps.c ./src/wall.c ./src/exit.c ./src/food.c ./src/players.c ./src/matrix.c ./src/errors.c ./src/checks.c
-BONUS = ./bonus/game.c ./bonus/frees.c ./bonus/listmanager.c ./bonus/position_helpers.c ./bonus/displays.c ./bonus/loaders.c ./bonus/maps.c ./bonus/wall.c ./bonus/exit.c ./bonus/food.c ./bonus/players.c ./bonus/matrix.c ./bonus/errors.c ./bonus/checks.c
-OBJ = $(SRC:.c=.o)
-B_OBJ = $(BONUS:.c=.o)
+NAME = so_long
+OBJ_DIR = ./obj
+SRCS_DIR = ./src
+SRCS = game.c frees.c listmanager.c position_helpers.c displays.c loaders.c maps.c wall.c exit.c food.c players.c matrix.c errors.c checks.c
+OBJ = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
+$(shell mkdir -p $(OBJ_DIR))
 
-all: $(NAME)
+CC = cc
+FLAGS = -Wall -Wextra -Werror
+START = cd mlx && make
+
+$(OBJ_DIR)/%.o: $(SRCS_DIR)/%.c
+	$(CC) $(FLAGS) -Imlx -c $< -o $@
+
+all: $(NAME) $(NAME_BONUS)
 
 $(NAME): $(OBJ)
-		ar -rcs $(NAME) $(OBJ)
-
-bonus: $(NAME)
-
-$(NAME): $(B_OBJ)
-		ar -rcs $(NAME) $(B_OBJ)
+	@$(START)
+	@$(CPRINT)
+	@$(CC) ./get_next_line/gnl.a $(OBJ) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
 clean:
-		rm -f $(OBJ)
+	rm -rf $(OBJ)
+	make -C mlx clean
 
-b_clean:
-		rm -f $(B_OBJ)
+fclean:
+	rm -rf $(NAME) $(OBJ)
+	make -C mlx clean
 
-re: clean all
+re: fclean all
 
-fclean: clean
-		rm -f $(NAME)
-
-c: all clean
-		cc ./src/maps.c game.a ./get_next_line/gnl.a -Lmlx -lmlx -framework OpenGL -framework AppKit
-		# ./a.out
-
-bc: bonus b_clean
-		cc ./src/maps.c game.a ./get_next_line/gnl.a -Lmlx -lmlx -framework OpenGL -framework AppKit
-		# ./a.out
-
+.PHONY: clean fclean all re
