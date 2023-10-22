@@ -3,36 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   utilites.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
+/*   By: zvakil <zvakil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 14:03:02 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/18 17:57:14 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/10/22 07:09:34 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx.h"
-#include <unistd.h>
-#include <stdio.h>
+#include "game.h"
 
-int press(int keycode)
+void	nuller(t_vars *vars)
 {
-	printf("PRESSS : %d\n", keycode);
-	return(0);
-}
-
-int release(int keycode)
-{
-		printf("RELLES : %d\n", keycode);
-	return(0);
-}
-int	main()
-{
-	void *mlx;
-	void *win;
-	mlx = mlx_init();
-	win = mlx_new_window(mlx, 100, 100, "ZAIN");
-	mlx_hook(win, 2, 0, press, NULL);
-	mlx_hook(win, 3, 0, release, NULL);
-	mlx_loop(mlx);
-	return (0);
+	vars->wall = NULL;
+	vars->base = NULL;
+	vars->p1 = NULL;
+	vars->exit = NULL;
+	vars->food = NULL;
 }

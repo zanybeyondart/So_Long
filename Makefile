@@ -1,7 +1,7 @@
 NAME = so_long
 OBJ_DIR = ./obj
 SRCS_DIR = ./src
-SRCS = game.c frees.c listmanager.c position_helpers.c displays.c loaders.c maps.c wall.c exit.c food.c players.c matrix.c errors.c checks.c
+SRCS = game.c frees.c listmanager.c position_helpers.c displays.c utilites.c loaders.c maps.c wall.c exit.c food.c players.c matrix.c errors.c checks.c
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 $(shell mkdir -p $(OBJ_DIR))
 

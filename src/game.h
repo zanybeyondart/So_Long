@@ -6,7 +6,7 @@
 /*   By: zvakil <zvakil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 08:29:07 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/22 05:59:56 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/10/22 06:31:51 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,6 +185,7 @@ void	load_anim_run(t_vars *vars, animation *sprite);
 animation	*player_img(t_vars *vars);
 void	load_p1_anims(t_vars *vars);
 void	load_p1(t_vars *vars);
+void	nuller(t_vars *vars);
 
 //MATRIX.C
 int	**matrix_create(int *rc, int **mat, char *path);

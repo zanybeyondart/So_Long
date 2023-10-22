@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   listmanager.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
+/*   By: zvakil <zvakil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 17:06:10 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/18 17:42:00 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/10/22 06:46:42 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,16 +43,16 @@ char	*pather(char *main, int frame, char *ext, char *path)
 
 void	add_frame_helper(t_vars *vars, char *path, animation *sprite)
 {
-	animation	*temp;
+animation *temp;
 
-	temp = NULL;
-	while (sprite->next)
-		sprite = sprite->next;
-	temp = malloc(sizeof(animation));
-	if (temp == NULL)
-		malloc_er(vars, NULL, NULL);
-	temp->img = mlx_xpm_file_to_image(vars->mlx, path, &temp->w, &temp->h);
-	sprite->next = temp;
+    temp = malloc(sizeof(animation));
+    if (temp == NULL)
+        malloc_er(vars, NULL, NULL);
+    temp->img = mlx_xpm_file_to_image(vars->mlx, path, &temp->w, &temp->h);
+    temp->next = NULL;
+    while (sprite->next)
+        sprite = sprite->next;
+    sprite->next = temp;
 }
 
 void	add_frames(t_vars *vars, char *path, animation *sprite)
