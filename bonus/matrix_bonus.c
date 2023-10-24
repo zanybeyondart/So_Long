@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   matrix.c                                           :+:      :+:    :+:   */
+/*   matrix_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 09:31:41 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/21 15:30:51 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/10/24 14:25:58 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	check_matrix(int **mat, int row, int col)
 		else if (err->e != 1)
 			printf("Invalid Exit : There should be 1 exit\n");
 		else if (err->p != 1)
-			printf("Invalid Wall : There should be 1 player\n");
+			printf("Invalid Player : There should be 1 player\n");
 		free(err);
 		return (0);
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zvakil <zvakil@student.42.fr>              +#+  +:+       +#+        */
+/*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 08:29:07 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/22 06:31:51 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/10/24 15:29:42 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 # define P 32
 # define C 19
 # define E 21
+# define V 38
 
 typedef struct frames{
 	void			*img;
@@ -43,17 +44,34 @@ typedef struct list
 	animation *idle;
 	animation *run;
 	animation *active;
+	int run_frames;
+	int idle_frames;
 	int x;
 	int y;
 	int move;
 	int move_count;
 }player;
 
+typedef struct s_enem_info
+{
+	int x;
+	int y;
+	int dir;
+	int r_wall;
+	int l_wall;
+	int alive;
+	animation *right_anim;
+	animation *left_anim;
+	struct s_enem_info *next;	
+}t_enem_info;
+
 typedef struct portal
 {
 	animation *disabled;
 	animation *enabled;
 	animation *active;
+	int exit_dis_frame;
+	int exit_en_frame;
 	int x;
 	int y;
 	int exit;
@@ -75,6 +93,19 @@ typedef struct map_info
 	int *rc;
 }map;
 
+typedef struct s_vars {
+	void	*mlx;
+	void	*win;
+	player	*p1;
+	map *map;
+	animation *wall;
+	animation *food;
+	animation	*base;
+	portal *exit;
+	t_enem_info *enemies;
+	int end;
+} t_vars;
+
 typedef struct boundingbox_info
 {
 	int pv;
@@ -88,18 +119,6 @@ typedef struct boundingbox_info
 	int er;
 } box;
 
-typedef struct s_vars {
-	void	*mlx;
-	void	*win;
-	player	*p1;
-	map *map;
-	animation *wall;
-	animation *food;
-	animation	*base;
-	portal *exit;
-	int end;
-} t_vars;
-
 typedef struct map{
 	int w;
 	int c;
@@ -107,6 +126,7 @@ typedef struct map{
 	int e;
 	int xtra;
 } map_errs;
+
 
 
 // MAIN.C
@@ -147,7 +167,7 @@ char *pather(char *main, int frame, char *ext, char *path);
 // DISLPAY.C
 void main_display(t_vars *vars);
 animation	*image_helper(int frame, animation *temp);
-animation	*image(animation *sprite);
+animation	*image(animation *sprite, int frame);
 void	d_anim_helper(t_vars *vars, void *img, int x, int y);
 
 //MAPS.C
@@ -203,7 +223,8 @@ void	game_checks(t_vars *vars);
 void	mediator(char *path, int **mat, int *index, int *rc);
 int	ulti_path_check(int **mat, char *path, int *start, int *rc);
 void	path_valid(int **mat, int i, int j, int *path);
-
+void load_enemy(t_vars *vars);
+void	load_enemy_anims(t_vars *vars);
 
 
 #endif

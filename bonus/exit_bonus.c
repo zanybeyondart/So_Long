@@ -6,7 +6,7 @@
 /*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 06:35:58 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/21 15:12:29 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/10/24 11:21:57 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,14 @@ void	load_exit0(t_vars *vars, animation *food)
 	char		*path;
 
 	path = NULL;
-	while (i != -1)
+	while (1)
 	{
 		path = pather("./textures/exit/exit0/exit", i, ".xpm", path);
 		if (path == NULL)
-			i = -1;
+		{
+			vars->exit->exit_dis_frame = i;
+			break ;
+		}
 		else
 		{
 			add_frames (vars, path, food);
@@ -37,11 +40,14 @@ void	load_exit1(t_vars *vars, animation *food)
 	char		*path;
 
 	path = NULL;
-	while (i != -1)
+	while (1)
 	{
 		path = pather("./textures/exit/exit1/exit", i, ".xpm", path);
 		if (path == NULL)
-			i = -1;
+		{
+			vars->exit->exit_en_frame = i;
+			break ;
+		}
 		else
 		{
 			add_frames (vars, path, food);
@@ -53,9 +59,9 @@ void	load_exit1(t_vars *vars, animation *food)
 animation	*exit_img(t_vars *vars)
 {
 	if (vars->exit->exit == 0)
-		return (image(vars->exit->disabled));
+		return (image(vars->exit->disabled, vars->exit->exit_dis_frame));
 	else
-		return (image(vars->exit->enabled));
+		return (image(vars->exit->enabled, vars->exit->exit_en_frame));
 }
 
 box	exit_bound(t_vars *vars, int key, int i, int j)

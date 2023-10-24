@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wall.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zvakil <zvakil@student.42.fr>              +#+  +:+       +#+        */
+/*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 15:08:09 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/22 06:41:18 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/10/23 19:05:23 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,9 @@ void	wall_set(t_vars *vars)
 		{
 			if (vars->map->mat[i][j] == 1)
 				wall_set_2(vars, i, j);
+			else
+				mlx_put_image_to_window(vars->mlx, vars->win, vars->base->img,
+					j * vars->wall->w, i * vars->wall->h);
 			j++;
 		}
 		j = 0;

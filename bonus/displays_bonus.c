@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   displays.c                                         :+:      :+:    :+:   */
+/*   displays_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 16:48:11 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/24 11:18:59 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/10/24 16:18:00 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,31 @@ void	base_rend(t_vars *vars)
 	}
 }
 
+void enemies_rend(t_vars *vars, t_enem_info *enemy)
+{
+	animation *temp;
+
+	// if (enemy->dir == 1)
+		temp = vars->enemies->right_anim;
+	// else 
+	// temp = vars->enemies->left_anim;
+	mlx_put_image_to_window(vars->mlx, vars->win, temp->img, enemy->x, enemy->y);
+}
+
 void	main_display(t_vars *vars)
 {
+	t_enem_info *temp;
+	
+	temp = NULL;
+	temp = vars->enemies;
 	wall_set(vars);
 	food_rend(vars);
+	while(temp)
+	{
+		enemies_rend(vars, temp);
+		temp = temp->next;
+	}
+	
 }
 
 void	d_anim_helper(t_vars *vars, void *img, int x, int y)

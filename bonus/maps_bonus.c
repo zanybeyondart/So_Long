@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   maps.c                                             :+:      :+:    :+:   */
+/*   maps_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zvakil <zvakil@student.42.fr>              +#+  +:+       +#+        */
+/*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 17:20:29 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/22 06:22:55 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/10/24 14:49:37 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,8 @@ int	check_map(char *path)
 	{
 		i = 0;
 		while (temp[i] == '1' || temp[i] == '\n' || temp[i] == '0'
-			|| temp[i] == 'C' || temp[i] == 'P' || temp[i] == 'E')
+			|| temp[i] == 'C' || temp[i] == 'P' || temp[i] == 'E'
+			|| temp[i] == 'V')
 			i++;
 		if (temp[i] != '\0')
 			error_return(2, fd, temp, temp[i]);

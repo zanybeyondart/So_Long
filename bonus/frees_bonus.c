@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   frees.c                                            :+:      :+:    :+:   */
+/*   frees_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zvakil <zvakil@student.42.fr>              +#+  +:+       +#+        */
+/*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 10:44:59 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/22 07:45:09 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/10/24 15:22:51 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,20 @@ void	free_game(game *game, t_vars *vars)
 	}
 }
 
+void	free_enemies(t_enem_info *enemies, t_vars *vars)
+{
+	if(enemies)
+	{
+		if(enemies->right_anim && enemies->left_anim)
+		{
+			free_animation(enemies->right_anim, vars);
+			free_animation(enemies->left_anim, vars);
+		}
+		free_enemies(enemies->next, vars);
+		free(enemies);
+	}
+}
+
 void	free_vars(t_vars *vars)
 {
 	if (vars)
@@ -52,6 +66,7 @@ void	free_vars(t_vars *vars)
 		free_map(vars->map);
 		free_animation(vars->food, vars);
 		free_animation(vars->base, vars);
+		free_enemies(vars->enemies, vars);
 		free(vars);
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zvakil <zvakil@student.42.fr>              +#+  +:+       +#+        */
+/*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 09:42:55 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/22 07:47:27 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/10/24 14:57:16 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,12 @@ int	callbacks(t_vars *vars)
 {
 	usleep(100000);
 	game_checks(vars);
-	loadplayers(vars);
 	vars->p1->active = player_img(vars);
 	vars->exit->active = exit_img(vars);
 	mlx_clear_window(vars->mlx, vars->win);
 	main_display(vars);
-	d_anim_helper(vars, vars->exit->active->img, vars->exit->x, vars->exit->y);
-	d_anim_helper(vars, vars->p1->active->img, vars->p1->x, vars->p1->y);
+	d_anim_helper(vars, vars->exit->enabled->img, vars->exit->x, vars->exit->y);
+	d_anim_helper(vars, vars->p1->idle->img, vars->p1->x, vars->p1->y);
 	mlx_do_sync(vars->mlx);
 	if (vars->end == 1)
 		quit(vars);
@@ -70,6 +69,7 @@ int	game_start(int **mat, int *rc)
 	vars->mlx = mlx_init();
 	vars->win = mlx_new_window(vars->mlx, rc[1] * 60, rc[0] * 60, "HELLO");
 	nuller(vars);
+	loadplayers(vars);
 	mlx_loop_hook(vars->mlx, callbacks, vars);
 	mlx_hook(vars->win, 2, 0, events, vars);
 	mlx_hook(vars->win, 3, 0, on_release, vars);

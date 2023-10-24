@@ -1,32 +1,29 @@
-NAME = so_long
-OBJ_DIR = ./obj
-SRCS_DIR = ./src
-SRCS = game.c frees.c listmanager.c position_helpers.c displays.c utilites.c loaders.c maps.c wall.c exit.c food.c players.c matrix.c errors.c checks.c
-OBJ = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
-$(shell mkdir -p $(OBJ_DIR))
-
 CC = cc
-FLAGS = -Wall -Wextra -Werror
-START = cd mlx && make
+CFLAGS = -Wall -Werror -Wextra
+NAME = game.a
+SRC = ./src/game.c ./src/frees.c ./src/listmanager.c ./src/position_helpers.c ./src/displays.c ./src/loaders.c ./src/maps.c ./src/wall.c ./src/exit.c ./src/food.c ./src/players.c ./src/matrix.c ./src/errors.c ./src/checks.c ./src/utilites.c
+B_SRC = ./bonus/game_bonus.c ./bonus/frees_bonus.c ./bonus/listmanager_bonus.c ./bonus/position_helpers_bonus.c ./bonus/displays_bonus.c ./bonus/loaders_bonus.c ./bonus/maps_bonus.c ./bonus/wall_bonus.c ./bonus/exit_bonus.c ./bonus/food_bonus.c ./bonus/players_bonus.c ./bonus/matrix_bonus.c ./bonus/errors_bonus.c ./bonus/checks_bonus.c ./bonus/utilites_bonus.c ./bonus/enemy_bonus.c
+OBJ = $(SRC:.c=.o)
+B_OBJ = $(B_SRC:.c=.o)
 
-$(OBJ_DIR)/%.o: $(SRCS_DIR)/%.c
-	$(CC) $(FLAGS) -Imlx -c $< -o $@
-
-all: $(NAME) $(NAME_BONUS)
+all: $(NAME)
 
 $(NAME): $(OBJ)
-	@$(START)
-	@$(CPRINT)
-	@$(CC) ./get_next_line/gnl.a $(OBJ) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+		ar -rcs $(NAME) $(OBJ)
 
 clean:
-	rm -rf $(OBJ)
-	make -C mlx clean
+		rm -f $(OBJ) $(B_OBJ)
 
-fclean:
-	rm -rf $(NAME) $(OBJ)
-	make -C mlx clean
+re: clean all
 
-re: fclean all
+fclean: clean
+		rm -f $(NAME)
 
-.PHONY: clean fclean all re
+bonus: $(B_OBJ)
+		ar -rcs game.a $(B_OBJ)
+
+c: all clean
+		cc ./src/maps.c game.a ./get_next_line/gnl.a -Lmlx -lmlx -framework OpenGL -framework AppKit -o so_long
+
+b: bonus clean
+		cc ./bonus/maps_bonus.c game.a ./get_next_line/gnl.a -Lmlx -lmlx -framework OpenGL -framework AppKit -o so_long

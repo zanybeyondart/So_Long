@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   players.c                                          :+:      :+:    :+:   */
+/*   players_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zvakil <zvakil@student.42.fr>              +#+  +:+       +#+        */
+/*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 07:28:49 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/22 07:03:31 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/10/24 16:00:17 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void	load_p1(t_vars *vars)
 		{
 			if (vars->map->mat[i][j] == P)
 			{
-				vars->p1->x = j * vars->wall->w;
-				vars->p1->y = i * vars->wall->h;
+				vars->p1->x = j * vars->wall->w + 10;
+				vars->p1->y = i * vars->wall->h + 10;
 			}
 			j++;
 		}
@@ -45,12 +45,16 @@ void	load_anim_idle(t_vars *vars, animation *sprite)
 {
 	static int	i;
 	char		*path;
+
 	path = NULL;
-	while (i != -1)
+	while (1)
 	{
 		path = pather("./textures/Player/Idle/PNG/idle", i, ".xpm", path);
 		if (path == NULL)
-			i = -1;
+		{
+			vars->p1->idle_frames = i;
+			break ;
+		}
 		else
 		{
 			add_frames(vars, path, sprite);
@@ -65,11 +69,14 @@ void	load_anim_run(t_vars *vars, animation *sprite)
 	char		*path;
 
 	path = NULL;
-	while (i != -1)
+	while (1)
 	{
 		path = pather("./textures/Player/run/PNG/run", i, ".xpm", path);
 		if (path == NULL)
-			i = -1;
+		{
+			vars->p1->run_frames = i;
+			break ;
+		}
 		else
 		{
 			add_frames(vars, path, sprite);
@@ -81,14 +88,13 @@ void	load_anim_run(t_vars *vars, animation *sprite)
 animation	*player_img(t_vars *vars)
 {
 	if (vars->p1->move == 0)
-		return (image(vars->p1->idle));
+		return (image(vars->p1->idle, vars->p1->idle_frames));
 	else
-		return (image(vars->p1->run));
+		return (image(vars->p1->run, vars->p1->run_frames));
 }
 
 void	load_p1_anims(t_vars *vars)
 {
-
 	vars->p1->idle = malloc(sizeof(animation));
 	if (vars->p1->idle == NULL)
 		malloc_er(vars, NULL, NULL);

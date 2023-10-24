@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   loaders.c                                          :+:      :+:    :+:   */
+/*   loaders_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zvakil <zvakil@student.42.fr>              +#+  +:+       +#+        */
+/*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 15:03:12 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/22 07:48:06 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/10/24 15:30:07 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,26 +80,19 @@ void	load_exit_en_dis(t_vars *vars)
 
 int	loadplayers(t_vars *vars)
 {
-	if (!vars->base)
-		load_base(vars);
-	if (!vars->wall)
-		load_wall(vars);
-	if (!vars->p1)
-		load_p1(vars);
-	if (!vars->exit)
-		load_exit(vars);
-	if (!vars->p1->idle && !vars->p1->run)
-		load_p1_anims(vars);
-	if (!vars->food)
-	{
-		vars->food = malloc(sizeof(animation));
-		if (vars->food == NULL)
-			malloc_er(vars, NULL, NULL);
-		vars->food->img = NULL;
-		vars->food->next = NULL;
-		load_food(vars, vars->food);
-	}
-	if (!vars->exit->enabled && !vars->exit->disabled)
-		load_exit_en_dis(vars);
+	load_base(vars);
+	load_wall(vars);
+	load_p1(vars);
+	load_exit(vars);
+	load_p1_anims(vars);
+	load_enemy(vars);
+	load_enemy_anims(vars);
+	vars->food = malloc(sizeof(animation));
+	if (vars->food == NULL)
+		malloc_er(vars, NULL, NULL);
+	vars->food->img = NULL;
+	vars->food->next = NULL;
+	load_food(vars, vars->food);
+	load_exit_en_dis(vars);
 	return (0);
 }

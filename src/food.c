@@ -6,7 +6,7 @@
 /*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 07:08:03 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/18 17:33:31 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/10/23 18:59:24 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,7 @@ void	food_rend(t_vars *vars)
 			if (vars->map->mat[i][j] == C)
 				mlx_put_image_to_window(vars->mlx, vars->win, temp->img,
 					j * vars->wall->w + 10, i * vars->wall->h + 10);
-			if (temp->next && vars->map->mat[i][j] == -90)
-				temp = temp->next;
-			else if (temp->next)
+			if (temp->next)
 				temp = temp->next;
 			else
 				temp = vars->food;
