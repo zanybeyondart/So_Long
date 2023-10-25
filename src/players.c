@@ -6,7 +6,7 @@
 /*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 07:28:49 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/24 11:13:18 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/10/25 18:22:32 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	load_anim_idle(t_vars *vars, animation *sprite)
 	path = NULL;
 	while (1)
 	{
-		path = pather("./textures/Player/Idle/PNG/idle", i, ".xpm", path);
+		path = pather("./textures/Player/idle_r/idle", i, ".xpm", path);
 		if (path == NULL)
 		{
 			vars->p1->idle_frames = i;
@@ -71,7 +71,7 @@ void	load_anim_run(t_vars *vars, animation *sprite)
 	path = NULL;
 	while (1)
 	{
-		path = pather("./textures/Player/run/PNG/run", i, ".xpm", path);
+		path = pather("./textures/Player/run_r/run", i, ".xpm", path);
 		if (path == NULL)
 		{
 			vars->p1->run_frames = i;

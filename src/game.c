@@ -6,7 +6,7 @@
 /*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 09:42:55 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/24 14:57:16 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/10/25 18:22:45 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,7 @@ int	events(int keycode, t_vars *vars)
 
 int	callbacks(t_vars *vars)
 {
-	usleep(100000);
 	game_checks(vars);
-	vars->p1->active = player_img(vars);
-	vars->exit->active = exit_img(vars);
 	mlx_clear_window(vars->mlx, vars->win);
 	main_display(vars);
 	d_anim_helper(vars, vars->exit->enabled->img, vars->exit->x, vars->exit->y);

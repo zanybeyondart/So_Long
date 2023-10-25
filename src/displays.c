@@ -6,7 +6,7 @@
 /*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 16:48:11 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/24 11:18:59 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/10/25 08:12:27 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ animation	*image(animation *sprite, int frame)
 	static int	i;
 	animation	*temp;
 
+	temp = NULL;
 	temp = sprite;
 	if (i >= frame - 1)
 		i = 0;

@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   food.c                                             :+:      :+:    :+:   */
+/*   food_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 07:08:03 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/23 18:59:24 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/10/25 16:23:10 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game.h"
 
-void	load_food(t_vars *vars, animation *food)
+void	list_food(t_vars *vars, animation *food)
 {
 	static int	i;
 	char		*path;
@@ -29,6 +29,16 @@ void	load_food(t_vars *vars, animation *food)
 			i++;
 		}
 	}
+}
+
+void	load_food(t_vars *vars)
+{
+	vars->food = malloc(sizeof(animation));
+	if (vars->food == NULL)
+		malloc_er(vars, NULL, NULL);
+	vars->food->img = NULL;
+	vars->food->next = NULL;
+	list_food(vars, vars->food);
 }
 
 void	food_rend(t_vars *vars)

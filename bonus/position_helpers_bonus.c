@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   position_helpers.c                                 :+:      :+:    :+:   */
+/*   position_helpers_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 11:08:58 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/21 21:08:08 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/10/25 08:37:43 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ int	pos_check_1(int pc, int pv, int key, t_vars *vars)
 		j = 0;
 		while (j < vars->map->rc[1])
 		{
-			if (vars->map->mat[i][j] == 1
-				&& check_inter(wall_bound(vars, key, i, j), pv, pc))
+			if (vars->map->mat[i][j] == 1 
+			&& check_inter(wall_bound(vars, key, i, j), pv, pc))
 				return (0);
 			if (vars->map->mat[i][j] == C
 				&& check_inter(col_bound(vars, key, i, j), pv, pc))
@@ -72,5 +72,13 @@ void	update_pos(int keycode, player *p1, t_vars *vars)
 	if (keycode == D)
 		if (pos_check_1(p1->y, p1->x + SPEED, keycode, vars))
 			p1->x += SPEED;
+	if (keycode == A)
+	{
+		p1->dir = -1;
+	}
+	if (keycode == D)
+	{
+		p1->dir = 1;
+	}
 	p1->move = 1;
 }

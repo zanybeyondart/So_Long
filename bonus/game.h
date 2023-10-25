@@ -6,7 +6,7 @@
 /*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 08:29:07 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/24 15:29:42 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/10/25 18:00:38 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,9 @@ typedef struct frames{
 typedef struct list
 {
 	animation *idle;
+	animation *idle_l;
 	animation *run;
+	animation *run_l;
 	animation *active;
 	int run_frames;
 	int idle_frames;
@@ -50,6 +52,7 @@ typedef struct list
 	int y;
 	int move;
 	int move_count;
+	int dir;
 }player;
 
 typedef struct s_enem_info
@@ -62,6 +65,8 @@ typedef struct s_enem_info
 	int alive;
 	animation *right_anim;
 	animation *left_anim;
+	animation *active;
+	int frames;
 	struct s_enem_info *next;	
 }t_enem_info;
 
@@ -93,9 +98,44 @@ typedef struct map_info
 	int *rc;
 }map;
 
+typedef struct s_kill
+{
+	animation *anim;
+	int x;
+	int y;
+	int spawn;
+	int frames;
+}t_kill;
+
+typedef struct s_power
+{
+	animation *anim;
+	animation *anim_l;
+	int x;
+	int y;
+	int spawn;
+	int frames;
+}t_power;
+
+typedef struct s_menu
+{
+	animation *bg;
+	int bg_frame;
+	animation *logo;
+	int logo_frame;
+	animation *o1;
+	int o1_frame;
+	animation *o2;
+	int o2_frame;
+	animation *o3;
+	int o3_frame;
+}t_menu;
+
 typedef struct s_vars {
 	void	*mlx;
 	void	*win;
+	void 	*start_mlx;
+	void	*start_win;
 	player	*p1;
 	map *map;
 	animation *wall;
@@ -103,6 +143,11 @@ typedef struct s_vars {
 	animation	*base;
 	portal *exit;
 	t_enem_info *enemies;
+	t_power *power;
+	t_kill *kill;
+	t_menu *start_screen;
+	t_menu *end_screen;
+	int game_state;
 	int end;
 } t_vars;
 
@@ -130,11 +175,12 @@ typedef struct map{
 
 
 // MAIN.C
+void load_power(t_vars *vars);
+void enemy_updates(t_enem_info *enemy, t_vars *vars);
 int quit(t_vars *vars);
 int events(int keycode, t_vars *vars);
 int callbacks(t_vars *vars);
-int game_start(int **mat, int *rc);
-
+int	game_start(int **mat, int *rc);
 
 
 // FREES.C
@@ -192,20 +238,37 @@ void		load_exit1(t_vars *vars, animation *food);
 animation	*exit_img(t_vars *vars);
 box			exit_bound(t_vars *vars, int key, int i, int j);
 void	free_portal(portal *p, t_vars *vars);
-
+void load_anim_enemy_right(t_vars *vars, animation *sprite);
+void load_anim_enemy_left(t_vars *vars, animation *sprite);
+void	enemies_rend(t_vars *vars, t_enem_info *enemy);
+void	enemies_list_send(t_vars *vars);
+void power_rend(t_vars *vars);
+void	exit_rend(t_vars *vars);
 
 //FOOD.C
-void	load_food(t_vars *vars, animation *food);
+void	load_food(t_vars *vars);
 void	food_rend(t_vars *vars);
 box	col_bound(t_vars *vars, int key, int i, int j);
-
+void load_kill(t_vars *vars);
+void kill_rend(t_vars *vars);
 //PLAYER.C
 void	load_anim_idle(t_vars *vars, animation *sprite);
 void	load_anim_run(t_vars *vars, animation *sprite);
 animation	*player_img(t_vars *vars);
-void	load_p1_anims(t_vars *vars);
 void	load_p1(t_vars *vars);
 void	nuller(t_vars *vars);
+
+void	enemy_list(t_vars *vars, t_enem_info *enemies, int i, int j);
+int enemy_wall_col(t_vars *vars, int i, int j, int dir);
+void	game_state_2_render(t_vars *vars);
+void	game_state_2_keys(int keycode, t_vars *vars);
+void	load_p1_anims_idle_assign(t_vars *vars);
+void	load_p1_anims_run_assign(t_vars *vars);
+void	load_p1_anims_run_assign(t_vars *vars);
+void	load_anim_idle(t_vars *vars, animation *sprite);
+void	load_anim_idle_2(t_vars *vars, animation *sprite);
+void	load_anim_run(t_vars *vars, animation *sprite);
+void	load_anim_run_2(t_vars *vars, animation *sprite);
 
 //MATRIX.C
 int	**matrix_create(int *rc, int **mat, char *path);
@@ -217,14 +280,20 @@ void	check_matrix_1(int **mat, int row, int col, map_errs *err);
 //ERRORS.C
 void	check_errors(int *rc, int **mat);
 void	malloc_er(t_vars *vars, int **mat, int *rc);
+void start_window(t_vars *vars);
 
 //CHECKS.C
 void	game_checks(t_vars *vars);
 void	mediator(char *path, int **mat, int *index, int *rc);
 int	ulti_path_check(int **mat, char *path, int *start, int *rc);
 void	path_valid(int **mat, int i, int j, int *path);
-void load_enemy(t_vars *vars);
+void	load_enemies(t_vars *vars);
 void	load_enemy_anims(t_vars *vars);
-
-
+void power_updates(t_vars *vars);
+box	power_bound(t_vars *vars, int i, int j);
+int	power_check_inter(box temp, int pv, int pc, t_vars *vars);
+int	lim(int a, int b, int c);
+void power_check(t_vars *vars);
+animation	*exit_image_helper(int frame, animation *temp);
+void	load_anim_idle_2(t_vars *vars, animation *sprite);
 #endif

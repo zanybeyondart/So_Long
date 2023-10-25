@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loaders.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zvakil <zvakil@student.42.fr>              +#+  +:+       +#+        */
+/*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 15:03:12 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/22 07:48:06 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/10/25 18:22:01 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ void	load_base(t_vars *vars)
 	if (vars->base == NULL)
 		malloc_er(vars, NULL, NULL);
 	vars->base->img = mlx_xpm_file_to_image(vars->mlx,
-				"./textures/Walls/PNG/base.xpm",
-				&vars->base->w, &vars->base->h);
+					"./textures/Walls/PNG/base.xpm",
+					&vars->base->w, &vars->base->h);
 	vars->base->next = NULL;
 }
 

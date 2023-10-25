@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checks.c                                           :+:      :+:    :+:   */
+/*   checks_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 09:42:55 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/21 15:33:14 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/10/25 16:57:49 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	ulti_path_check(int **mat, char *path, int *start, int *rc)
 
 void	path_valid(int **mat, int i, int j, int *path)
 {
-	if (i < 0 || j < 0 || i >= 5 || j >= 13 || mat[i][j] == 1)
+	if (mat[i][j] == 1)
 		return ;
 	if (mat[i][j] == E)
 	{

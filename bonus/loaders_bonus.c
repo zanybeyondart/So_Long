@@ -6,7 +6,7 @@
 /*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 15:03:12 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/24 15:30:07 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/10/25 18:03:57 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,54 +28,9 @@ void	load_base(t_vars *vars)
 	if (vars->base == NULL)
 		malloc_er(vars, NULL, NULL);
 	vars->base->img = mlx_xpm_file_to_image(vars->mlx,
-				"./textures/Walls/PNG/base.xpm",
-				&vars->base->w, &vars->base->h);
+			"./textures/Walls/PNG/base.xpm",
+			&vars->base->w, &vars->base->h);
 	vars->base->next = NULL;
-}
-
-void	load_exit(t_vars *vars)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	vars->exit = malloc(sizeof(portal));
-	if (vars->exit == NULL)
-		malloc_er(vars, NULL, NULL);
-	while (i < vars->map->rc[0])
-	{
-		while (j < vars->map->rc[1])
-		{
-			if (vars->map->mat[i][j] == E)
-			{
-				vars->exit->x = j * vars->wall->w;
-				vars->exit->y = i * vars->wall->h;
-			}
-			j++;
-		}
-		j = 0;
-		i++;
-	}
-	vars->exit->exit = 0;
-	vars->exit->enabled = NULL;
-	vars->exit->disabled = NULL;
-}
-
-void	load_exit_en_dis(t_vars *vars)
-{
-	vars->exit->disabled = malloc(sizeof(animation));
-	if (vars->exit->disabled == NULL)
-		malloc_er(vars, NULL, NULL);
-	vars->exit->disabled->img = NULL;
-	vars->exit->disabled->next = NULL;
-	load_exit0(vars, vars->exit->disabled);
-	vars->exit->enabled = malloc(sizeof(animation));
-	if (vars->exit->enabled == NULL)
-		malloc_er(vars, NULL, NULL);
-	vars->exit->enabled->img = NULL;
-	vars->exit->enabled->next = NULL;
-	load_exit1(vars, vars->exit->enabled);
 }
 
 int	loadplayers(t_vars *vars)
@@ -83,16 +38,14 @@ int	loadplayers(t_vars *vars)
 	load_base(vars);
 	load_wall(vars);
 	load_p1(vars);
+	load_p1_anims_idle_assign(vars);
+	load_p1_anims_run_assign(vars);
 	load_exit(vars);
-	load_p1_anims(vars);
-	load_enemy(vars);
-	load_enemy_anims(vars);
-	vars->food = malloc(sizeof(animation));
-	if (vars->food == NULL)
-		malloc_er(vars, NULL, NULL);
-	vars->food->img = NULL;
-	vars->food->next = NULL;
-	load_food(vars, vars->food);
 	load_exit_en_dis(vars);
+	load_enemies(vars);
+	load_enemy_anims(vars);
+	load_food(vars);
+	load_power(vars);
+	load_kill(vars);
 	return (0);
 }
