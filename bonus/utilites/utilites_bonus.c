@@ -6,11 +6,11 @@
 /*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 14:03:02 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/25 17:04:10 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/10/28 14:11:32 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../game.h"
+#include "../game_bonus.h"
 
 void	nuller(t_vars *vars)
 {
@@ -22,6 +22,12 @@ void	nuller(t_vars *vars)
 	vars->enemies = NULL;
 	vars->power = NULL;
 	vars->kill = NULL;
+	vars->number = NULL;
+	vars->start_screen = NULL;
+	vars->cursor = NULL;
+	vars->easteregg_screen = NULL;
+	vars->end_lose_screen = NULL;
+	vars->end_win_screen = NULL;
 }
 
 char	*pather(char *main, int frame, char *ext, char *path)
@@ -53,11 +59,11 @@ char	*pather(char *main, int frame, char *ext, char *path)
 	}
 }
 
-void	add_frame_helper(t_vars *vars, char *path, animation *sprite)
+void	add_frame_helper(t_vars *vars, char *path, t_animation *sprite)
 {
-	animation	*temp;
+	t_animation	*temp;
 
-	temp = malloc(sizeof(animation));
+	temp = malloc(sizeof(t_animation));
 	if (temp == NULL)
 		malloc_er(vars, NULL, NULL);
 	temp->img = mlx_xpm_file_to_image(vars->mlx, path, &temp->w, &temp->h);
@@ -67,7 +73,7 @@ void	add_frame_helper(t_vars *vars, char *path, animation *sprite)
 	sprite->next = temp;
 }
 
-void	add_frames(t_vars *vars, char *path, animation *sprite)
+void	add_frames(t_vars *vars, char *path, t_animation *sprite)
 {
 	if (!sprite->img)
 		sprite->img = mlx_xpm_file_to_image(vars->mlx, path,
@@ -75,4 +81,11 @@ void	add_frames(t_vars *vars, char *path, animation *sprite)
 	else
 		add_frame_helper(vars, path, sprite);
 	free(path);
+}
+
+int	quit(t_vars *vars)
+{
+	mlx_destroy_window(vars->mlx, vars->win);
+	free_vars(vars);
+	exit(1);
 }

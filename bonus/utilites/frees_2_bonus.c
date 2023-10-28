@@ -6,13 +6,26 @@
 /*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 17:06:19 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/25 17:11:04 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/10/28 14:11:27 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../game.h"
+#include "../game_bonus.h"
 
-void	free_animation(animation *anim, t_vars *vars)
+void	free_menu(t_menu *menu, t_vars *vars)
+{
+	if (menu->o1)
+		free_animation(menu->o1, vars);
+	if (menu->o2)
+		free_animation(menu->o2, vars);
+	if (menu->o3)
+		free_animation(menu->o3, vars);
+	if (menu->o4)
+		free_animation(menu->o4, vars);
+	free(menu);
+}
+
+void	free_animation(t_animation *anim, t_vars *vars)
 {
 	if (anim)
 	{
@@ -22,7 +35,7 @@ void	free_animation(animation *anim, t_vars *vars)
 	}
 }
 
-void	free_player(player *p, t_vars *vars)
+void	free_player(t_player *p, t_vars *vars)
 {
 	if (p)
 	{
@@ -30,11 +43,15 @@ void	free_player(player *p, t_vars *vars)
 		free_animation(p->idle_l, vars);
 		free_animation(p->run, vars);
 		free_animation(p->run_l, vars);
+		free_animation(p->death_l, vars);
+		free_animation(p->death_r, vars);
+		free_animation(p->win_l, vars);
+		free_animation(p->win_r, vars);
 		free(p);
 	}
 }
 
-void	free_portal(portal *p, t_vars *vars)
+void	free_portal(t_portal *p, t_vars *vars)
 {
 	if (p)
 	{
@@ -43,5 +60,3 @@ void	free_portal(portal *p, t_vars *vars)
 		free(p);
 	}
 }
-
-

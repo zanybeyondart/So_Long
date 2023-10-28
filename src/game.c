@@ -6,7 +6,7 @@
 /*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 09:42:55 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/25 18:22:45 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/10/28 14:02:49 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	events(int keycode, t_vars *vars)
 {
 	if (keycode == 53)
 		quit(vars);
-	if (keycode == 13 || keycode == 0 || keycode == 1 || keycode == 2)
+	if (keycode == W || keycode == A || keycode == S || keycode == D)
 		update_pos(keycode, vars->p1, vars);
 	return (0);
 }
@@ -33,8 +33,16 @@ int	callbacks(t_vars *vars)
 	game_checks(vars);
 	mlx_clear_window(vars->mlx, vars->win);
 	main_display(vars);
-	d_anim_helper(vars, vars->exit->enabled->img, vars->exit->x, vars->exit->y);
-	d_anim_helper(vars, vars->p1->idle->img, vars->p1->x, vars->p1->y);
+	if (vars->exit->exit == 0)
+		vars->exit->active = vars->exit->disabled;
+	else
+		vars->exit->active = vars->exit->enabled;
+	if (vars->p1->move == 0)
+		vars->p1->active = vars->p1->idle;
+	else
+		vars->p1->active = vars->p1->run;
+	d_anim_helper(vars, vars->exit->active->img, vars->exit->x, vars->exit->y);
+	d_anim_helper(vars, vars->p1->active->img, vars->p1->x, vars->p1->y);
 	mlx_do_sync(vars->mlx);
 	if (vars->end == 1)
 		quit(vars);
@@ -58,7 +66,7 @@ int	game_start(int **mat, int *rc)
 		malloc_er(vars, mat, rc);
 	vars->end = 0;
 	vars->map = NULL;
-	vars->map = malloc(sizeof(map));
+	vars->map = malloc(sizeof(t_map));
 	if (vars->map == NULL)
 		malloc_er(vars, mat, rc);
 	vars->map->mat = mat;

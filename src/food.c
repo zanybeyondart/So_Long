@@ -6,13 +6,13 @@
 /*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 07:08:03 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/23 18:59:24 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/10/28 14:01:13 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game.h"
 
-void	load_food(t_vars *vars, animation *food)
+void	load_food(t_vars *vars, t_animation *food)
 {
 	static int	i;
 	char		*path;
@@ -35,7 +35,7 @@ void	food_rend(t_vars *vars)
 {
 	int			i;
 	int			j;
-	animation	*temp;
+	t_animation	*temp;
 
 	i = 0;
 	j = 0;
@@ -58,9 +58,9 @@ void	food_rend(t_vars *vars)
 	}
 }
 
-box	col_bound(t_vars *vars, int key, int i, int j)
+t_box	col_bound(t_vars *vars, int key, int i, int j)
 {
-	box	temp;
+	t_box	temp;
 
 	if (key == A || key == D)
 	{

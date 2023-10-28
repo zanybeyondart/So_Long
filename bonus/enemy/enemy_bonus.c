@@ -6,11 +6,11 @@
 /*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 14:17:16 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/25 16:25:42 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/10/28 14:10:49 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../game.h"
+#include "../game_bonus.h"
 
 int	enemy_wall_col(t_vars *vars, int i, int j, int dir)
 {
@@ -28,7 +28,7 @@ int	enemy_wall_col(t_vars *vars, int i, int j, int dir)
 	}
 }
 
-int	en_check_inter(box temp, int pv, int pc)
+int	en_check_inter(t_box temp, int pv, int pc)
 {
 	if (lim(pv, temp.m_min, temp.m_max)
 		|| lim(pv + temp.m_bd, temp.m_min, temp.m_max))
@@ -38,9 +38,9 @@ int	en_check_inter(box temp, int pv, int pc)
 	return (0);
 }
 
-box	en_bound(t_vars *vars, t_enem_info *enemy)
+t_box	en_bound(t_vars *vars, t_enem_info *enemy)
 {
-	box	temp;
+	t_box	temp;
 
 	temp.m_min = enemy->x;
 	temp.m_max = temp.m_min + vars->enemies->right_anim->w;
@@ -58,7 +58,7 @@ void	enemy_updates(t_enem_info *enemy, t_vars *vars)
 		enemy_updates(enemy->next, vars);
 		if (en_check_inter(en_bound(vars, enemy), vars->p1->x, vars->p1->y)
 			&& enemy->alive == 0)
-			quit(vars);
+			death_seq(vars);
 		if (enemy->x + (15 * enemy->dir) < enemy->l_wall
 			|| (enemy->x + vars->enemies->right_anim->w)
 			+ (15 * enemy->dir) > enemy->r_wall)

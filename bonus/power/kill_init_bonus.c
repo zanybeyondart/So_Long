@@ -6,13 +6,13 @@
 /*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 09:11:37 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/25 16:56:14 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/10/28 14:11:16 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../game.h"
+#include "../game_bonus.h"
 
-void	load_anim_kill(t_vars *vars, animation *sprite)
+void	load_anim_kill(t_vars *vars, t_animation *sprite)
 {
 	static int	i;
 	char		*path;
@@ -34,7 +34,7 @@ void	load_anim_kill(t_vars *vars, animation *sprite)
 	}
 }
 
-void load_kill(t_vars *vars)
+void	load_kill(t_vars *vars)
 
 {
 	vars->kill = malloc(sizeof(t_kill));
@@ -42,8 +42,7 @@ void load_kill(t_vars *vars)
 		malloc_er(vars, NULL, NULL);
 	vars->kill->anim = NULL;
 	vars->kill->spawn = 0;
-
-	vars->kill->anim = malloc(sizeof(animation));
+	vars->kill->anim = malloc(sizeof(t_animation));
 	if (vars->kill->anim == NULL)
 		malloc_er(vars, NULL, NULL);
 	vars->kill->anim->img = NULL;

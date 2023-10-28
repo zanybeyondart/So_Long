@@ -6,13 +6,13 @@
 /*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 07:08:03 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/25 16:23:10 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/10/28 14:12:17 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "game.h"
+#include "game_bonus.h"
 
-void	list_food(t_vars *vars, animation *food)
+void	list_food(t_vars *vars, t_animation *food)
 {
 	static int	i;
 	char		*path;
@@ -33,7 +33,7 @@ void	list_food(t_vars *vars, animation *food)
 
 void	load_food(t_vars *vars)
 {
-	vars->food = malloc(sizeof(animation));
+	vars->food = malloc(sizeof(t_animation));
 	if (vars->food == NULL)
 		malloc_er(vars, NULL, NULL);
 	vars->food->img = NULL;
@@ -45,7 +45,7 @@ void	food_rend(t_vars *vars)
 {
 	int			i;
 	int			j;
-	animation	*temp;
+	t_animation	*temp;
 
 	i = 0;
 	j = 0;
@@ -68,9 +68,9 @@ void	food_rend(t_vars *vars)
 	}
 }
 
-box	col_bound(t_vars *vars, int key, int i, int j)
+t_box	col_bound(t_vars *vars, int key, int i, int j)
 {
-	box	temp;
+	t_box	temp;
 
 	if (key == A || key == D)
 	{

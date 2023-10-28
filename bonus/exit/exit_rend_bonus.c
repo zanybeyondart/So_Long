@@ -6,13 +6,13 @@
 /*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 17:17:24 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/25 17:26:07 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/10/28 14:10:58 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../game.h"
+#include "../game_bonus.h"
 
-animation	*exit_image_helper(int frame, animation *temp)
+t_animation	*exit_image_helper(int frame, t_animation *temp)
 {
 	int	i;
 
@@ -25,10 +25,10 @@ animation	*exit_image_helper(int frame, animation *temp)
 	return (temp);
 }
 
-animation	*exit_image(animation *sprite, int frame)
+t_animation	*exit_image(t_animation *sprite, int frame)
 {
 	static int	i;
-	animation	*temp;
+	t_animation	*temp;
 
 	temp = sprite;
 	if (i >= frame - 1)
@@ -38,7 +38,7 @@ animation	*exit_image(animation *sprite, int frame)
 	return (exit_image_helper(i, temp));
 }
 
-animation	*exit_img(t_vars *vars)
+t_animation	*exit_img(t_vars *vars)
 {
 	if (vars->exit->exit == 0)
 		return (exit_image(vars->exit->disabled, vars->exit->exit_dis_frame));

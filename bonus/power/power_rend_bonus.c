@@ -6,13 +6,13 @@
 /*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 16:46:05 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/25 16:52:58 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/10/28 14:11:22 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../game.h"
+#include "../game_bonus.h"
 
-animation	*pow_image_helper(int frame, animation *temp)
+t_animation	*pow_image_helper(int frame, t_animation *temp)
 {
 	int	i;
 
@@ -25,10 +25,10 @@ animation	*pow_image_helper(int frame, animation *temp)
 	return (temp);
 }
 
-animation	*pow_image(animation *sprite, int frame)
+t_animation	*pow_image(t_animation *sprite, int frame)
 {
 	static int	i;
-	animation	*temp;
+	t_animation	*temp;
 
 	temp = sprite;
 	if (i >= frame - 1)
@@ -40,7 +40,7 @@ animation	*pow_image(animation *sprite, int frame)
 
 void	power_rend(t_vars *vars)
 {
-	animation	*temp2;
+	t_animation	*temp2;
 
 	temp2 = NULL;
 	temp2 = vars->power->anim;
@@ -49,7 +49,6 @@ void	power_rend(t_vars *vars)
 		temp2 = pow_image(vars->power->anim, vars->power->frames);
 		mlx_put_image_to_window(vars->mlx, vars->win, temp2->img,
 			vars->power->x, vars->power->y);
-
 	}
 	if (vars->power->spawn == -1)
 	{

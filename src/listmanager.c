@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   listmanager.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zvakil <zvakil@student.42.fr>              +#+  +:+       +#+        */
+/*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 17:06:10 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/22 06:46:42 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/10/28 14:03:12 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,21 +41,21 @@ char	*pather(char *main, int frame, char *ext, char *path)
 	}
 }
 
-void	add_frame_helper(t_vars *vars, char *path, animation *sprite)
+void	add_frame_helper(t_vars *vars, char *path, t_animation *sprite)
 {
-animation *temp;
+	t_animation	*temp;
 
-    temp = malloc(sizeof(animation));
-    if (temp == NULL)
-        malloc_er(vars, NULL, NULL);
-    temp->img = mlx_xpm_file_to_image(vars->mlx, path, &temp->w, &temp->h);
-    temp->next = NULL;
-    while (sprite->next)
-        sprite = sprite->next;
-    sprite->next = temp;
+	temp = malloc(sizeof(t_animation));
+	if (temp == NULL)
+		malloc_er(vars, NULL, NULL);
+	temp->img = mlx_xpm_file_to_image(vars->mlx, path, &temp->w, &temp->h);
+	temp->next = NULL;
+	while (sprite->next)
+		sprite = sprite->next;
+	sprite->next = temp;
 }
 
-void	add_frames(t_vars *vars, char *path, animation *sprite)
+void	add_frames(t_vars *vars, char *path, t_animation *sprite)
 {
 	if (!sprite->img)
 		sprite->img = mlx_xpm_file_to_image(vars->mlx, path,

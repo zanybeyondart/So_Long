@@ -6,13 +6,13 @@
 /*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 17:50:12 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/25 17:50:35 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/10/28 14:11:14 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../game.h"
+#include "../game_bonus.h"
 
-void	load_anim_idle(t_vars *vars, animation *sprite)
+void	load_anim_idle(t_vars *vars, t_animation *sprite)
 {
 	static int	i;
 	char		*path;
@@ -34,7 +34,7 @@ void	load_anim_idle(t_vars *vars, animation *sprite)
 	}
 }
 
-void	load_anim_idle_2(t_vars *vars, animation *sprite)
+void	load_anim_idle_2(t_vars *vars, t_animation *sprite)
 {
 	static int	i;
 	char		*path;
@@ -56,7 +56,7 @@ void	load_anim_idle_2(t_vars *vars, animation *sprite)
 	}
 }
 
-void	load_anim_run(t_vars *vars, animation *sprite)
+void	load_anim_run(t_vars *vars, t_animation *sprite)
 {
 	static int	i;
 	char		*path;
@@ -78,7 +78,7 @@ void	load_anim_run(t_vars *vars, animation *sprite)
 	}
 }
 
-void	load_anim_run_2(t_vars *vars, animation *sprite)
+void	load_anim_run_2(t_vars *vars, t_animation *sprite)
 {
 	static int	i;
 	char		*path;

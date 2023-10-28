@@ -6,29 +6,29 @@
 /*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 16:27:26 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/25 16:34:57 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/10/28 14:10:52 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../game.h"
+#include "../game_bonus.h"
 
-animation	*en_image_helper(int frame, animation *temp)
+t_animation	*en_image_helper(int frame, t_animation *temp)
 {
 	int	i;
 
 	i = 0;
-	while (i < frame)
+	while (i++ < frame)
 	{
 		temp = temp->next;
-		i++;
 	}
+	printf("%d\n", i);
 	return (temp);
 }
 
-animation	*en_image(animation *sprite, int frame)
+t_animation	*en_image(t_animation *sprite, int frame)
 {
 	static int	i;
-	animation	*temp;
+	t_animation	*temp;
 
 	temp = sprite;
 	if (i >= frame - 1)
@@ -40,7 +40,7 @@ animation	*en_image(animation *sprite, int frame)
 
 void	enemies_rend(t_vars *vars, t_enem_info *enemy)
 {
-	animation	*temp;
+	t_animation	*temp;
 
 	if (enemy->dir == 1)
 		temp = en_image(vars->enemies->right_anim, vars->enemies->frames);

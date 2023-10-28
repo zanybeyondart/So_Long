@@ -6,15 +6,13 @@
 /*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 16:55:49 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/25 16:57:21 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/10/28 14:11:17 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../game.h"
+#include "../game_bonus.h"
 
-
-
-animation	*kill_image_helper(int frame, animation *temp)
+t_animation	*kill_image_helper(int frame, t_animation *temp)
 {
 	int	i;
 
@@ -27,10 +25,10 @@ animation	*kill_image_helper(int frame, animation *temp)
 	return (temp);
 }
 
-animation	*kill_image(animation *sprite, int frame, t_vars *vars)
+t_animation	*kill_image(t_animation *sprite, int frame, t_vars *vars)
 {
 	static int	i;
-	animation	*temp;
+	t_animation	*temp;
 
 	temp = sprite;
 	if (i >= frame - 1)
@@ -46,7 +44,7 @@ animation	*kill_image(animation *sprite, int frame, t_vars *vars)
 
 void	kill_rend(t_vars *vars)
 {
-	animation	*temp;
+	t_animation	*temp;
 
 	temp = kill_image(vars->kill->anim, vars->kill->frames, vars);
 	mlx_put_image_to_window(vars->mlx, vars->win, temp->img,

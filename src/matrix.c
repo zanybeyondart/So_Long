@@ -6,13 +6,13 @@
 /*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 09:31:41 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/21 15:30:51 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/10/28 14:04:17 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game.h"
 
-void	check_matrix_1(int **mat, int row, int col, map_errs *err)
+void	check_matrix_1(int **mat, int row, int col, t_map_errs *err)
 {
 	int	i;
 	int	j;
@@ -40,9 +40,9 @@ void	check_matrix_1(int **mat, int row, int col, map_errs *err)
 
 int	check_matrix(int **mat, int row, int col)
 {
-	map_errs	*err;
+	t_map_errs	*err;
 
-	err = malloc (sizeof(map_errs));
+	err = malloc (sizeof(t_map_errs));
 	err->w = 0;
 	err->c = 0;
 	err->p = 0;

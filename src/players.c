@@ -6,7 +6,7 @@
 /*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 07:28:49 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/25 18:22:32 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/10/28 14:04:45 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	load_p1(t_vars *vars)
 
 	i = 0;
 	j = 0;
-	vars->p1 = malloc(sizeof(player));
+	vars->p1 = malloc(sizeof(t_player));
 	if (vars->p1 == NULL)
 		malloc_er(vars, NULL, NULL);
 	vars->p1->move_count = 0;
@@ -41,7 +41,7 @@ void	load_p1(t_vars *vars)
 	vars->p1->run = NULL;
 }
 
-void	load_anim_idle(t_vars *vars, animation *sprite)
+void	load_anim_idle(t_vars *vars, t_animation *sprite)
 {
 	static int	i;
 	char		*path;
@@ -63,7 +63,7 @@ void	load_anim_idle(t_vars *vars, animation *sprite)
 	}
 }
 
-void	load_anim_run(t_vars *vars, animation *sprite)
+void	load_anim_run(t_vars *vars, t_animation *sprite)
 {
 	static int	i;
 	char		*path;
@@ -85,7 +85,7 @@ void	load_anim_run(t_vars *vars, animation *sprite)
 	}
 }
 
-animation	*player_img(t_vars *vars)
+t_animation	*player_img(t_vars *vars)
 {
 	if (vars->p1->move == 0)
 		return (image(vars->p1->idle, vars->p1->idle_frames));
@@ -95,13 +95,13 @@ animation	*player_img(t_vars *vars)
 
 void	load_p1_anims(t_vars *vars)
 {
-	vars->p1->idle = malloc(sizeof(animation));
+	vars->p1->idle = malloc(sizeof(t_animation));
 	if (vars->p1->idle == NULL)
 		malloc_er(vars, NULL, NULL);
 	vars->p1->idle->img = NULL;
 	vars->p1->idle->next = NULL;
 	load_anim_idle(vars, vars->p1->idle);
-	vars->p1->run = malloc(sizeof(animation));
+	vars->p1->run = malloc(sizeof(t_animation));
 	if (vars->p1->run == NULL)
 		malloc_er(vars, NULL, NULL);
 	vars->p1->run->img = NULL;

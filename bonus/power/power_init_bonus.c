@@ -6,13 +6,13 @@
 /*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 16:38:29 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/25 16:41:49 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/10/28 14:11:20 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../game.h"
+#include "../game_bonus.h"
 
-void	load_anim_power_2(t_vars *vars, animation *sprite)
+void	load_anim_power_2(t_vars *vars, t_animation *sprite)
 {
 	static int	i;
 	char		*path;
@@ -34,7 +34,7 @@ void	load_anim_power_2(t_vars *vars, animation *sprite)
 	}
 }
 
-void	load_anim_power(t_vars *vars, animation *sprite)
+void	load_anim_power(t_vars *vars, t_animation *sprite)
 {
 	static int	i;
 	char		*path;
@@ -64,12 +64,12 @@ void	load_power(t_vars *vars)
 	vars->power->anim = NULL;
 	vars->power->anim_l = NULL;
 	vars->power->spawn = 0;
-	vars->power->anim = malloc(sizeof(animation));
+	vars->power->anim = malloc(sizeof(t_animation));
 	if (vars->power->anim == NULL)
 		malloc_er(vars, NULL, NULL);
 	vars->power->anim->img = NULL;
 	vars->power->anim->next = NULL;
-	vars->power->anim_l = malloc(sizeof(animation));
+	vars->power->anim_l = malloc(sizeof(t_animation));
 	if (vars->power->anim_l == NULL)
 		malloc_er(vars, NULL, NULL);
 	vars->power->anim_l->img = NULL;

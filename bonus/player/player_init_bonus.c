@@ -6,11 +6,21 @@
 /*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 17:48:14 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/25 17:58:37 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/10/28 14:11:11 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../game.h"
+#include "../game_bonus.h"
+
+void	p1_nulls(t_vars *vars)
+{
+	vars->p1->idle = NULL;
+	vars->p1->idle_l = NULL;
+	vars->p1->run = NULL;
+	vars->p1->run_l = NULL;
+	vars->p1->death_l = NULL;
+	vars->p1->death_r = NULL;
+}
 
 void	load_p1(t_vars *vars)
 {
@@ -19,7 +29,7 @@ void	load_p1(t_vars *vars)
 
 	i = 0;
 	j = 0;
-	vars->p1 = malloc(sizeof(player));
+	vars->p1 = malloc(sizeof(t_player));
 	if (vars->p1 == NULL)
 		malloc_er(vars, NULL, NULL);
 	vars->p1->move_count = 0;
@@ -38,20 +48,17 @@ void	load_p1(t_vars *vars)
 		j = 0;
 		i++;
 	}
-	vars->p1->idle = NULL;
-	vars->p1->idle_l = NULL;
-	vars->p1->run = NULL;
 }
 
 void	load_p1_anims_idle_assign(t_vars *vars)
 {
-	vars->p1->idle = malloc(sizeof(animation));
+	vars->p1->idle = malloc(sizeof(t_animation));
 	if (vars->p1->idle == NULL)
 		malloc_er(vars, NULL, NULL);
 	vars->p1->idle->img = NULL;
 	vars->p1->idle->next = NULL;
 	load_anim_idle(vars, vars->p1->idle);
-	vars->p1->idle_l = malloc(sizeof(animation));
+	vars->p1->idle_l = malloc(sizeof(t_animation));
 	if (vars->p1->idle_l == NULL)
 		malloc_er(vars, NULL, NULL);
 	vars->p1->idle_l->img = NULL;
@@ -61,13 +68,13 @@ void	load_p1_anims_idle_assign(t_vars *vars)
 
 void	load_p1_anims_run_assign(t_vars *vars)
 {
-	vars->p1->run = malloc(sizeof(animation));
+	vars->p1->run = malloc(sizeof(t_animation));
 	if (vars->p1->run == NULL)
 		malloc_er(vars, NULL, NULL);
 	vars->p1->run->img = NULL;
 	vars->p1->run->next = NULL;
 	load_anim_run(vars, vars->p1->run);
-	vars->p1->run_l = malloc(sizeof(animation));
+	vars->p1->run_l = malloc(sizeof(t_animation));
 	if (vars->p1->run_l == NULL)
 		malloc_er(vars, NULL, NULL);
 	vars->p1->run_l->img = NULL;

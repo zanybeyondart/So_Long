@@ -6,13 +6,13 @@
 /*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 17:24:42 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/25 16:58:45 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/10/28 14:11:19 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../game.h"
+#include "../game_bonus.h"
 
-int	power_check_inter(box temp, int pv, int pc, t_vars *vars)
+int	power_check_inter(t_box temp, int pv, int pc, t_vars *vars)
 {
 	if (lim(pv, temp.m_min, temp.m_max)
 		|| lim(pv + temp.m_bd, temp.m_min, temp.m_max))
@@ -28,9 +28,9 @@ int	power_check_inter(box temp, int pv, int pc, t_vars *vars)
 	return (1);
 }
 
-box	power_bound(t_vars *vars, int i, int j)
+t_box	power_bound(t_vars *vars, int i, int j)
 {
-	box	temp;
+	t_box	temp;
 
 	temp.m_min = i * vars->wall->h;
 	temp.m_max = temp.m_min + vars->wall->h;

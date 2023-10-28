@@ -6,7 +6,7 @@
 /*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 15:08:09 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/23 19:05:23 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/10/28 14:05:23 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,9 @@ void	wall_set(t_vars *vars)
 	}
 }
 
-box	wall_bound(t_vars *vars, int key, int i, int j)
+t_box	wall_bound(t_vars *vars, int key, int i, int j)
 {
-	box	temp;
+	t_box	temp;
 
 	if (key == A || key == D)
 	{
@@ -82,7 +82,7 @@ box	wall_bound(t_vars *vars, int key, int i, int j)
 	return (temp);
 }
 
-void	list_wall(t_vars *vars, animation *wall)
+void	list_wall(t_vars *vars, t_animation *wall)
 {
 	static int	i;
 	char		*path;
@@ -90,7 +90,7 @@ void	list_wall(t_vars *vars, animation *wall)
 	path = NULL;
 	while (i != -1)
 	{
-		path = pather("./textures/Walls/PNG/wall", i, ".xpm", path);
+		path = pather("./textures/Walls/wall", i, ".xpm", path);
 		if (path == NULL)
 			i = -1;
 		else
@@ -104,7 +104,7 @@ void	list_wall(t_vars *vars, animation *wall)
 void	wall_rend(t_vars *vars, int x, int y, int index)
 {
 	int			i;
-	animation	*temp;
+	t_animation	*temp;
 
 	i = 0;
 	temp = vars->wall;

@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.c                                           :+:      :+:    :+:   */
+/*   errors_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 15:00:35 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/21 15:13:28 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/10/28 15:51:20 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "game.h"
+#include "game_bonus.h"
 
 void	check_errors(int *rc, int **mat)
 {
-	if (rc[1] == rc[0])
+	if (rc[0] != 5 || rc[1] != 18)
 	{
-		printf("Map should be rectangle !\n");
+		printf("Map should be 18 X 5 !\n");
 		matrix_free(mat, rc[0]);
 		exit(1);
 	}

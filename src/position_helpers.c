@@ -6,7 +6,7 @@
 /*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 11:08:58 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/21 21:08:08 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/10/28 14:04:55 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	lim(int a, int b, int c)
 	return (0);
 }
 
-int	check_inter(box temp, int pv, int pc)
+int	check_inter(t_box temp, int pv, int pc)
 {
 	if (lim(pv, temp.m_min, temp.m_max)
 		|| lim(pv + temp.m_bd, temp.m_min, temp.m_max))
@@ -58,7 +58,7 @@ int	pos_check_1(int pc, int pv, int key, t_vars *vars)
 	return (1);
 }
 
-void	update_pos(int keycode, player *p1, t_vars *vars)
+void	update_pos(int keycode, t_player *p1, t_vars *vars)
 {
 	if (keycode == W)
 		if (pos_check_1(p1->x, p1->y - SPEED, keycode, vars))

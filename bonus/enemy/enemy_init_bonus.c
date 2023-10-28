@@ -6,11 +6,11 @@
 /*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 15:51:09 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/25 16:07:21 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/10/28 14:10:51 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../game.h"
+#include "../game_bonus.h"
 
 void	load_enemies_head(t_vars *vars, int i, int j)
 {
@@ -54,13 +54,13 @@ void	load_enemies(t_vars *vars)
 
 void	load_enemy_anims(t_vars *vars)
 {
-	vars->enemies->right_anim = malloc(sizeof(animation));
+	vars->enemies->right_anim = malloc(sizeof(t_animation));
 	if (vars->enemies->right_anim == NULL)
 		malloc_er(vars, NULL, NULL);
 	vars->enemies->right_anim->img = NULL;
 	vars->enemies->right_anim->next = NULL;
 	load_anim_enemy_right(vars, vars->enemies->right_anim);
-	vars->enemies->left_anim = malloc(sizeof(animation));
+	vars->enemies->left_anim = malloc(sizeof(t_animation));
 	if (vars->enemies->left_anim == NULL)
 		malloc_er(vars, NULL, NULL);
 	vars->enemies->left_anim->img = NULL;

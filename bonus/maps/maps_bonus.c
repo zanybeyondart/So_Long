@@ -6,11 +6,11 @@
 /*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 17:20:29 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/25 15:44:31 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/10/28 14:11:02 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../game.h"
+#include "../game_bonus.h"
 
 void	error_return(int er, int fd, char *temp, char c)
 {
@@ -38,7 +38,7 @@ void	matrix_free(int **mat, int rows)
 	free(mat);
 }
 
-void	free_map(map *map)
+void	free_map(t_map *map)
 {
 	if (map)
 	{
@@ -65,8 +65,8 @@ int	main(int ac, char **av)
 		mat = matrix_create(rc, mat, av[1]);
 	start[0] = 0;
 	start[1] = 0;
-	ulti_path_check(mat, av[1], start, rc);
 	check_errors(rc, mat);
+	ulti_path_check(mat, av[1], start, rc);
 	game_start(mat, rc);
 	return (0);
 }

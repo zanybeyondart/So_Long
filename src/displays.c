@@ -6,7 +6,7 @@
 /*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 16:48:11 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/25 08:12:27 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/10/28 13:59:51 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	d_anim_helper(t_vars *vars, void *img, int x, int y)
 	mlx_put_image_to_window(vars->mlx, vars->win, img, x, y);
 }
 
-animation	*image_helper(int frame, animation *temp)
+t_animation	*image_helper(int frame, t_animation *temp)
 {
 	int	i;
 
@@ -56,10 +56,10 @@ animation	*image_helper(int frame, animation *temp)
 	return (temp);
 }
 
-animation	*image(animation *sprite, int frame)
+t_animation	*image(t_animation *sprite, int frame)
 {
 	static int	i;
-	animation	*temp;
+	t_animation	*temp;
 
 	temp = NULL;
 	temp = sprite;

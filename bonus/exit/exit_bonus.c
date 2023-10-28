@@ -6,15 +6,15 @@
 /*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 06:35:58 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/25 17:46:12 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/10/28 14:10:55 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../game.h"
+#include "../game_bonus.h"
 
-box	exit_bound(t_vars *vars, int key, int i, int j)
+t_box	exit_bound(t_vars *vars, int key, int i, int j)
 {
-	box	temp;
+	t_box	temp;
 
 	if (key == A || key == D)
 	{

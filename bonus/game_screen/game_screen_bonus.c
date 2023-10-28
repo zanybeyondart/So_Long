@@ -6,11 +6,11 @@
 /*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 15:25:30 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/25 17:36:33 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/10/28 14:10:59 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../game.h"
+#include "../game_bonus.h"
 
 void	game_state_2_render(t_vars *vars)
 {
@@ -19,19 +19,14 @@ void	game_state_2_render(t_vars *vars)
 	power_updates(vars);
 	power_check(vars);
 	game_checks(vars);
-	vars->p1->active = player_img(vars);
 	mlx_clear_window(vars->mlx, vars->win);
 	main_display(vars);
-	d_anim_helper(vars, vars->p1->active->img, vars->p1->x, vars->p1->y);
 	mlx_do_sync(vars->mlx);
-	if (vars->end == 1)
-		quit(vars);
 }
 
 void	game_state_2_keys(int keycode, t_vars *vars)
 {
-	printf("%d\n", keycode);
-	if (keycode == 13 || keycode == 0 || keycode == 1 || keycode == 2)
+	if (keycode == W || keycode == A || keycode == S || keycode == D)
 		update_pos(keycode, vars->p1, vars);
 	if (keycode == 49 && vars->power->spawn == 0)
 	{

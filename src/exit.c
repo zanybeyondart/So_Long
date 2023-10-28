@@ -6,13 +6,13 @@
 /*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 06:35:58 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/24 11:21:57 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/10/28 14:00:32 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game.h"
 
-void	load_exit0(t_vars *vars, animation *food)
+void	load_exit0(t_vars *vars, t_animation *food)
 {
 	static int	i;
 	char		*path;
@@ -34,7 +34,7 @@ void	load_exit0(t_vars *vars, animation *food)
 	}
 }
 
-void	load_exit1(t_vars *vars, animation *food)
+void	load_exit1(t_vars *vars, t_animation *food)
 {
 	static int	i;
 	char		*path;
@@ -56,7 +56,7 @@ void	load_exit1(t_vars *vars, animation *food)
 	}
 }
 
-animation	*exit_img(t_vars *vars)
+t_animation	*exit_img(t_vars *vars)
 {
 	if (vars->exit->exit == 0)
 		return (image(vars->exit->disabled, vars->exit->exit_dis_frame));
@@ -64,9 +64,9 @@ animation	*exit_img(t_vars *vars)
 		return (image(vars->exit->enabled, vars->exit->exit_en_frame));
 }
 
-box	exit_bound(t_vars *vars, int key, int i, int j)
+t_box	exit_bound(t_vars *vars, int key, int i, int j)
 {
-	box	temp;
+	t_box	temp;
 
 	if (key == A || key == D)
 	{
@@ -89,7 +89,7 @@ box	exit_bound(t_vars *vars, int key, int i, int j)
 	return (temp);
 }
 
-void	free_portal(portal *p, t_vars *vars)
+void	free_portal(t_portal *p, t_vars *vars)
 {
 	if (p)
 	{

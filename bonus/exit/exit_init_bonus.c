@@ -6,11 +6,11 @@
 /*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 17:11:25 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/25 17:44:48 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/10/28 14:10:56 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../game.h"
+#include "../game_bonus.h"
 
 void	load_exit(t_vars *vars)
 {
@@ -19,7 +19,7 @@ void	load_exit(t_vars *vars)
 
 	i = 0;
 	j = 0;
-	vars->exit = malloc(sizeof(portal));
+	vars->exit = malloc(sizeof(t_portal));
 	if (vars->exit == NULL)
 		malloc_er(vars, NULL, NULL);
 	while (i < vars->map->rc[0])
@@ -41,7 +41,7 @@ void	load_exit(t_vars *vars)
 	vars->exit->disabled = NULL;
 }
 
-void	load_exit0(t_vars *vars, animation *food)
+void	load_exit0(t_vars *vars, t_animation *food)
 {
 	static int	i;
 	char		*path;
@@ -63,7 +63,7 @@ void	load_exit0(t_vars *vars, animation *food)
 	}
 }
 
-void	load_exit1(t_vars *vars, animation *food)
+void	load_exit1(t_vars *vars, t_animation *food)
 {
 	static int	i;
 	char		*path;
@@ -87,13 +87,13 @@ void	load_exit1(t_vars *vars, animation *food)
 
 void	load_exit_en_dis(t_vars *vars)
 {
-	vars->exit->disabled = malloc(sizeof(animation));
+	vars->exit->disabled = malloc(sizeof(t_animation));
 	if (vars->exit->disabled == NULL)
 		malloc_er(vars, NULL, NULL);
 	vars->exit->disabled->img = NULL;
 	vars->exit->disabled->next = NULL;
 	load_exit0(vars, vars->exit->disabled);
-	vars->exit->enabled = malloc(sizeof(animation));
+	vars->exit->enabled = malloc(sizeof(t_animation));
 	if (vars->exit->enabled == NULL)
 		malloc_er(vars, NULL, NULL);
 	vars->exit->enabled->img = NULL;

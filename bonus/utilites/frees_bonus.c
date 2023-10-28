@@ -6,21 +6,11 @@
 /*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 10:44:59 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/25 17:07:35 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/10/28 14:11:28 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../game.h"
-
-void	free_game(game *game, t_vars *vars)
-{
-	if (game)
-	{
-		free_game(game->next, vars);
-		mlx_destroy_image(game->img, vars);
-		free(game);
-	}
-}
+#include "../game_bonus.h"
 
 void	free_enemies(t_enem_info *enemies, t_vars *vars)
 {
@@ -60,8 +50,16 @@ void	free_vars(t_vars *vars)
 		free_animation(vars->food, vars);
 		free_animation(vars->base, vars);
 		free_enemies(vars->enemies, vars);
-		free_power(vars->power , vars);
+		free_power(vars->power, vars);
 		free_kill(vars->kill, vars);
+		free_animation(vars->number, vars);
+		free_menu(vars->start_screen, vars);
+		free_menu(vars->pause_screen, vars);
+		free_menu(vars->end_win_screen, vars);
+		free_menu(vars->end_lose_screen, vars);
+		free_menu(vars->easteregg_screen, vars);
+		free_animation(vars->cursor, vars);
+		free_animation(vars->easteregg_text, vars);
 		free(vars);
 	}
 }

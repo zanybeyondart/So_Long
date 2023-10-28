@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   frees.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zvakil <zvakil@student.42.fr>              +#+  +:+       +#+        */
+/*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 10:44:59 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/22 07:45:09 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/10/28 14:01:26 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game.h"
 
-void	free_animation(animation *anim, t_vars *vars)
+void	free_animation(t_animation *anim, t_vars *vars)
 {
 	if (anim)
 	{
@@ -22,23 +22,13 @@ void	free_animation(animation *anim, t_vars *vars)
 	}
 }
 
-void	free_player(player *p, t_vars *vars)
+void	free_player(t_player *p, t_vars *vars)
 {
 	if (p)
 	{
 		free_animation(p->idle, vars);
 		free_animation(p->run, vars);
 		free(p);
-	}
-}
-
-void	free_game(game *game, t_vars *vars)
-{
-	if (game)
-	{
-		free_game(game->next, vars);
-		mlx_destroy_image(game->img, vars);
-		free(game);
 	}
 }
 
