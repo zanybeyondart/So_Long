@@ -6,7 +6,7 @@
 /*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 12:33:39 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/28 14:10:40 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/11/04 17:37:47 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ int	easteregg_found(t_vars *vars, t_animation *temp)
 	if (temp)
 	{
 		mlx_clear_window(vars->mlx, vars->win);
+		mlx_put_image_to_window(vars->mlx, vars->win,
+			vars->base->img, 0, 0);
 		wall_set(vars);
 		mlx_put_image_to_window(vars->mlx, vars->win,
 			vars->exit->active->img, vars->exit->x, vars->exit->y);
@@ -73,7 +75,8 @@ int	easteregg_found(t_vars *vars, t_animation *temp)
 		power_rend(vars);
 		player_rend(vars);
 		mlx_put_image_to_window(vars->mlx, vars->win, temp->img,
-			(vars->map->rc[1] / 2) * 60, (vars->map->rc[0] / 2) * 60);
+			((vars->map->rc[1] / 2) * 60) - (temp->w / 2),
+			((vars->map->rc[0] / 2) * 60));
 		mlx_do_sync(vars->mlx);
 		usleep(100000);
 		return (easteregg_found(vars, temp->next));

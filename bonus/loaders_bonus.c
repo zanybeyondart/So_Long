@@ -6,7 +6,7 @@
 /*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 15:03:12 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/28 14:10:11 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/11/04 14:58:14 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	load_base(t_vars *vars)
 	if (vars->base == NULL)
 		malloc_er(vars, NULL, NULL);
 	vars->base->img = mlx_xpm_file_to_image(vars->mlx,
-			"./textures/Walls/base.xpm",
+			"./textures_bonus/base.xpm",
 			&vars->base->w, &vars->base->h);
 	vars->base->next = NULL;
 }

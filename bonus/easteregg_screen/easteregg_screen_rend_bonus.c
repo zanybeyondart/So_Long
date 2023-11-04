@@ -6,7 +6,7 @@
 /*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 15:18:05 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/28 14:10:37 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/11/04 20:01:02 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,14 +71,10 @@ void	game_state_6_render(t_vars *vars)
 
 	temp = NULL;
 	temp2 = NULL;
-	if (vars->end_lose_screen->option == 1)
-		temp = easter_menu_image(vars->end_lose_screen->o1,
-				vars->end_lose_screen->frame);
-	else
-		temp = easter_menu_image(vars->end_lose_screen->o2,
-				vars->end_lose_screen->frame);
+	temp = easter_menu_image(vars->easteregg_screen->o1,
+			10);
 	temp2 = magic_image(vars->cursor, vars->cursor_frame);
-	usleep(50000);
+	usleep(100000);
 	mlx_put_image_to_window(vars->mlx, vars->win, temp->img, 0, 0);
 	mlx_put_image_to_window(vars->mlx, vars->win, temp2->img,
 		vars->cursor_x - (vars->cursor->w / 2),

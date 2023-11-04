@@ -6,7 +6,7 @@
 /*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 15:08:09 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/28 14:10:29 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/11/04 14:51:57 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,17 @@ void	wall_set_2(t_vars *vars, int i, int j)
 		|| (i == vars->map->rc[0] - 1 && j == 0)
 		|| (i == vars->map->rc[0] - 1 && j == vars->map->rc[1] - 1))
 	{
-		wall_rend(vars, j * vars->wall->w, i * vars->wall->h, 0);
+		return ;
 	}
 	else if (i != 0 && i != vars->map->rc[0] - 1
 		&& (j == 0 || j == vars->map->rc[1] - 1))
 	{
-		wall_rend(vars, j * vars->wall->w, i * vars->wall->h, 2);
+		return ;
 	}
 	else if ((i == 0 || i == vars->map->rc[0] - 1)
 		&& (j != 0 || j != vars->map->rc[1] - 1))
 	{
-		wall_rend(vars, j * vars->wall->w, i * vars->wall->h, 1);
+		return ;
 	}
 	else
 		wall_rend(vars, j * vars->wall->w, i * vars->wall->h, 3);
@@ -47,9 +47,6 @@ void	wall_set(t_vars *vars)
 		{
 			if (vars->map->mat[i][j] == 1)
 				wall_set_2(vars, i, j);
-			else
-				mlx_put_image_to_window(vars->mlx, vars->win, vars->base->img,
-					j * vars->wall->w, i * vars->wall->h);
 			j++;
 		}
 		j = 0;

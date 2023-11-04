@@ -6,7 +6,7 @@
 /*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 15:18:05 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/28 14:11:05 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/11/04 19:36:52 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	game_state_3_render(t_vars *vars)
 	else if (vars->pause_screen->option == 3)
 		temp = pmenu_image(vars->pause_screen->o3, vars->pause_screen->frame);
 	else if (vars->pause_screen->option == 4)
-		temp = pmenu_image(vars->pause_screen->o4, vars->pause_screen->frame);
+		temp = pmenu_image(vars->pause_screen->o4, 10);
+	usleep(100000);
 	mlx_put_image_to_window(vars->mlx, vars->win, temp->img, 0, 0);
 }

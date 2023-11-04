@@ -17,6 +17,7 @@ int	win_rend(t_vars *vars, t_animation *temp, int x, int y)
 	if (temp)
 	{
 		mlx_clear_window(vars->mlx, vars->win);
+		mlx_put_image_to_window(vars->mlx, vars->win, vars->base->img, 0, 0);
 		wall_set(vars);
 		mlx_put_image_to_window(vars->mlx, vars->win,
 			vars->exit->active->img, vars->exit->x, vars->exit->y);
@@ -55,7 +56,7 @@ void	load_anim_win(t_vars *vars, t_animation *sprite)
 	path = NULL;
 	while (1)
 	{
-		path = pather("./textures/Player/win_r/win", i, ".xpm", path);
+		path = pather("./textures_bonus/player/win_r/", i, ".xpm", path);
 		if (path == NULL)
 		{
 			break ;
@@ -76,7 +77,7 @@ void	load_anim_win_2(t_vars *vars, t_animation *sprite)
 	path = NULL;
 	while (1)
 	{
-		path = pather("./textures/Player/win_l/win", i, ".xpm", path);
+		path = pather("./textures_bonus/player/win_l/", i, ".xpm", path);
 		if (path == NULL)
 		{
 			break ;

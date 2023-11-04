@@ -3,7 +3,7 @@ static char *exit0[] = {
 /* columns rows colors chars-per-pixel */
 "60 60 162 2 ",
 "   c None",
-".  c #000000",
+".  c None",
 "X  c #020906",
 "o  c #030F0A",
 "O  c #0C0B0B",

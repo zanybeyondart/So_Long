@@ -6,7 +6,7 @@
 /*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 16:27:26 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/28 14:10:52 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/11/03 11:19:32 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ t_animation	*en_image_helper(int frame, t_animation *temp)
 	{
 		temp = temp->next;
 	}
-	printf("%d\n", i);
 	return (temp);
 }
 

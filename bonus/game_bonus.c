@@ -6,7 +6,7 @@
 /*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 09:42:55 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/28 14:10:03 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/11/04 20:14:02 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int	game_start(int **mat, int *rc)
 	vars->map->rc = rc;
 	vars->mlx = mlx_init();
 	vars->win = mlx_new_window(vars->mlx, rc[1] * 60,
-			(rc[0] + 1) * 60, "LOST IN TIME : DINO'S PORTAL ADVENTURE");
+			(rc[0] + 1) * 60, "DINO WARS");
 	loadplayers(vars);
 	mlx_loop_hook(vars->mlx, callbacks, vars);
 	mlx_hook(vars->win, 2, 0, events, vars);

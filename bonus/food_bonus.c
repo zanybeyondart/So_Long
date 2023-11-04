@@ -6,7 +6,7 @@
 /*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 07:08:03 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/28 14:12:17 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/11/04 17:03:57 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	list_food(t_vars *vars, t_animation *food)
 	path = NULL;
 	while (i != -1)
 	{
-		path = pather("./textures/food/food", i, ".xpm", path);
+		path = pather("./textures_bonus/food/", i, ".xpm", path);
 		if (path == NULL)
 			i = -1;
 		else

@@ -6,7 +6,7 @@
 /*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 11:03:09 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/28 14:11:09 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/11/04 16:33:49 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	death_rend(t_vars *vars, t_animation *temp, int x, int y)
 	if (temp)
 	{
 		mlx_clear_window(vars->mlx, vars->win);
+		mlx_put_image_to_window(vars->mlx, vars->win, vars->base->img, 0, 0);
 		wall_set(vars);
 		mlx_put_image_to_window(vars->mlx, vars->win,
 			vars->exit->active->img, vars->exit->x, vars->exit->y);
@@ -74,7 +75,7 @@ void	load_anim_death(t_vars *vars, t_animation *sprite)
 	path = NULL;
 	while (1)
 	{
-		path = pather("./textures/Player/death_r/death", i, ".xpm", path);
+		path = pather("./textures_bonus/player/death_r/", i, ".xpm", path);
 		if (path == NULL)
 		{
 			break ;
@@ -95,7 +96,7 @@ void	load_anim_death_2(t_vars *vars, t_animation *sprite)
 	path = NULL;
 	while (1)
 	{
-		path = pather("./textures/Player/death_l/death", i, ".xpm", path);
+		path = pather("./textures_bonus/player/death_l/", i, ".xpm", path);
 		if (path == NULL)
 		{
 			break ;

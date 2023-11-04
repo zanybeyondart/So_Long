@@ -6,7 +6,7 @@
 /*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 12:35:30 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/28 14:15:27 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/11/04 20:00:10 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	load_easteregg_o2(t_vars *vars, t_animation *sprite)
 	path = NULL;
 	while (1)
 	{
-		path = pather("./textures/easteregg_screen/o2/", i, ".xpm", path);
+		path = pather("./textures/easteregg_screen/o1/", i, ".xpm", path);
 		if (path == NULL)
 			break ;
 		else

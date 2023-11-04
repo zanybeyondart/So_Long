@@ -6,7 +6,7 @@
 /*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 16:38:29 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/28 14:11:20 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/11/04 17:15:12 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	load_anim_power_2(t_vars *vars, t_animation *sprite)
 	path = NULL;
 	while (1)
 	{
-		path = pather("./textures/power/left/power", i, ".xpm", path);
+		path = pather("./textures_bonus/power/left/", i, ".xpm", path);
 		if (path == NULL)
 		{
 			vars->power->frames = i;
@@ -42,7 +42,7 @@ void	load_anim_power(t_vars *vars, t_animation *sprite)
 	path = NULL;
 	while (1)
 	{
-		path = pather("./textures/power/right/power", i, ".xpm", path);
+		path = pather("./textures_bonus/power/right/", i, ".xpm", path);
 		if (path == NULL)
 		{
 			vars->power->frames = i;
