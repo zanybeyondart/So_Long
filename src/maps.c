@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   maps.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
+/*   By: zvakil <zvakil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 17:20:29 by zvakil            #+#    #+#             */
-/*   Updated: 2023/11/05 09:28:25 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/11/05 09:56:11 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,16 @@ void	error_return(int er, int fd, char *temp, char c)
 	{
 		close (fd);
 		printf("Invalid Char found : '%c' \n", c);
-		free(temp);
+		if (temp)
+			free(temp);
 		exit(1);
 	}
 	if (er == 3)
 	{
 		close (fd);
 		printf("Invalid Map \n");
-		free(temp);
+		if (temp)
+			free(temp);
 		exit(1);
 	}
 }
@@ -64,6 +66,8 @@ int	check_map(char *path, int i)
 	if (fd < 0)
 		error_return(1, 0, NULL, 0);
 	temp = get_next_line(fd);
+	if (!temp)
+		error_return(3, fd, NULL, 0);
 	len = ft_strlen(temp);
 	while (temp)
 	{
