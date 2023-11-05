@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   maps.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zvakil <zvakil@student.42.fr>              +#+  +:+       +#+        */
+/*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 17:20:29 by zvakil            #+#    #+#             */
-/*   Updated: 2023/11/05 08:27:23 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/11/05 09:28:25 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,8 @@ void	free_map(t_map *map)
 	}
 }
 
-int	check_map(char *path)
+int	check_map(char *path, int i)
 {
-	int		i;
 	int		len;
 	int		fd;
 	char	*temp;
@@ -69,10 +68,11 @@ int	check_map(char *path)
 	while (temp)
 	{
 		i = 0;
-		while ((temp[i] == '1' || temp[i] == '0' || temp[i] == 'C' ||
-			temp[i] == 'P' || temp[i] == 'E' || temp[i] == '\n') && i != len)
+		while ((temp[i] == '1' || temp[i] == '0' || temp[i] == 'C'
+				|| temp[i] == 'P' || temp[i] == 'E' || temp[i] == '\n')
+			&& i != len)
 			i++;
-		if(temp[i] != '\0')
+		if (temp[i] != '\0')
 			error_return(2, fd, temp, temp[i]);
 		free(temp);
 		temp = get_next_line(fd);
@@ -97,7 +97,7 @@ int	main(int ac, char **av)
 		printf("Invalid Arguments\n");
 		exit(1);
 	}
-	if (check_map(av[1]) && set_r_c(rc, av[1]))
+	if (check_map(av[1], 0) && set_r_c(rc, av[1]))
 		mat = matrix_create(rc, mat, av[1]);
 	start[0] = 0;
 	start[1] = 0;

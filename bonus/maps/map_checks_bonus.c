@@ -6,7 +6,7 @@
 /*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 15:42:32 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/28 14:11:01 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/11/05 09:05:35 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	check_map(char *path)
 		error_return(1, 0, NULL, 0);
 	temp = get_next_line(fd);
 	len = ft_strlen(temp);
-	while (temp != NULL && ft_strlen(temp) == len)
+	while (temp != NULL && (int)ft_strlen(temp) == len)
 	{
 		i = 0;
 		while (check_valid_alpha(temp[i]))

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checks.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zvakil <zvakil@student.42.fr>              +#+  +:+       +#+        */
+/*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 09:42:55 by zvakil            #+#    #+#             */
-/*   Updated: 2023/11/05 07:06:23 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/11/05 09:24:34 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,8 @@ int	ulti_path_check(int **mat, char *path, int *start, int *rc)
 
 void	path_valid(t_map *mat, int i, int j, int *path)
 {
-	if (i < 0 || j < 0 || i >= mat->rc[0] || j >= mat->rc[1] || mat->mat[i][j] == 1)
+	if (i < 0 || j < 0 || i >= mat->rc[0] || j >= mat->rc[1]
+		|| mat->mat[i][j] == 1)
 		return ;
 	if (mat->mat[i][j] == E)
 	{

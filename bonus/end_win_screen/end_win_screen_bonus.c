@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   end_win_screen_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zvakil <zvakil@student.42.fr>              +#+  +:+       +#+        */
+/*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 19:37:01 by zvakil            #+#    #+#             */
-/*   Updated: 2023/11/05 06:34:27 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/11/05 09:02:22 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	game_state_4_keys(int keycode, t_vars *vars)
 
 void	load_end_win_anims(t_vars *vars)
 {
-		vars->end_win_screen->o1 = malloc(sizeof(t_animation));
+	vars->end_win_screen->o1 = malloc(sizeof(t_animation));
 	if (!vars->end_win_screen->o1)
 		malloc_er(vars, NULL, NULL);
 	vars->end_win_screen->o1->img = NULL;

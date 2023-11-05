@@ -21,6 +21,7 @@
 # include <fcntl.h>
 # include <strings.h>
 # include "../get_next_line/get_next_line.h"
+# include "../printf/ft_printf.h"
 
 # define SPEED	15
 # define W	126

@@ -6,7 +6,7 @@
 /*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 09:31:41 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/28 14:12:33 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/11/05 09:06:14 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,13 @@ int	check_matrix(int **mat, int row, int col)
 	if (err->w == -1 || err->c == 0 || err->e != 1 || err->p != 1)
 	{
 		if (err->w == -1)
-			printf("Invalid Wall: Check borders\n");
+			ft_printf("Invalid Wall: Check borders\n");
 		else if (err->c == 0)
-			printf("Invalid Collectible : Put atleast one collectible\n");
+			ft_printf("Invalid Collectible : Put atleast one collectible\n");
 		else if (err->e != 1)
-			printf("Invalid Exit : There should be 1 exit\n");
+			ft_printf("Invalid Exit : There should be 1 exit\n");
 		else if (err->p != 1)
-			printf("Invalid Player : There should be 1 player\n");
+			ft_printf("Invalid Player : There should be 1 player\n");
 		free(err);
 		return (0);
 	}

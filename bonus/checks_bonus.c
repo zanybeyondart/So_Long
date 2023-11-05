@@ -6,7 +6,7 @@
 /*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 09:42:55 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/28 14:09:48 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/11/05 09:06:05 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	mediator(char *path, int **mat, int *index, int *rc)
 	path_valid(temp, index[0], index[1], er);
 	if (er[0] != 1)
 	{
-		printf("No Valid Path\n");
+		ft_printf("No Valid Path\n");
 		matrix_free(mat, rc[0]);
 		matrix_free(temp, rc[0]);
 		exit(1);

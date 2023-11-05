@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   easteregg_screen_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zvakil <zvakil@student.42.fr>              +#+  +:+       +#+        */
+/*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 19:37:01 by zvakil            #+#    #+#             */
-/*   Updated: 2023/11/05 06:31:49 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/11/05 09:20:58 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,21 +64,24 @@ int	mouse_move(int x, int y, t_vars *vars)
 
 int	easter_egg(int button, int x, int y, t_vars *vars)
 {
+	static int	i;
+
 	x = vars->cursor_x;
 	y = vars->cursor_y;
 	if (button == 1 && vars->p1->move_count == 42
 		&& (x > (vars->map->rc[1] / 2) * 60 - 3 *(vars->number->w / 2)
 			&& x < (vars->map->rc[1] / 2) * 60 + 1.5 * vars->number->w)
 		&& (y > vars->map->rc[0] * 60 + 5
-			&& y < vars->map->rc[0] * 60 + 5 + vars->number->h))
+			&& y < vars->map->rc[0] * 60 + 5 + vars->number->h) && i != -99)
 	{
+		vars->game_state = 6;
+		i = -99;
 		easteregg_found(vars, vars->easteregg_text);
 		easteregg_found(vars, vars->easteregg_text);
 		easteregg_found(vars, vars->easteregg_text);
 		easteregg_found(vars, vars->easteregg_text);
 		easteregg_found(vars, vars->easteregg_text);
 		mlx_mouse_hide();
-		vars->game_state = 6;
 	}
 	return (0);
 }

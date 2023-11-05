@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   frees_2_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zvakil <zvakil@student.42.fr>              +#+  +:+       +#+        */
+/*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 17:06:19 by zvakil            #+#    #+#             */
-/*   Updated: 2023/11/05 06:38:48 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/11/05 09:03:09 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	free_animation(t_animation *anim, t_vars *vars)
 	{
 		free_animation(anim->next, vars);
 		if (anim->img)
-		mlx_destroy_image(vars->mlx, anim->img);
+			mlx_destroy_image(vars->mlx, anim->img);
 		free(anim);
 	}
 }

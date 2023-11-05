@@ -6,7 +6,7 @@
 /*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 07:11:20 by zvakil            #+#    #+#             */
-/*   Updated: 2023/11/04 16:30:52 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/11/05 09:02:50 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ void	moves_rend(t_vars *vars)
 	first = number(vars, 0);
 	second = number(vars, 1);
 	third = number(vars, 2);
-
 	mlx_put_image_to_window(vars->mlx, vars->win, first->img,
 		(vars->map->rc[1] / 2) * 60 - (vars->number->w / 2),
 		vars->map->rc[0] * 60 + 10);

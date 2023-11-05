@@ -6,7 +6,7 @@
 /*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 17:20:29 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/28 14:11:02 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/11/05 09:06:16 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	error_return(int er, int fd, char *temp, char c)
 	if (er == 2)
 	{
 		close (fd);
-		printf("Invalid Char found : '%c' \n", c);
+		ft_printf("Invalid Char found : '%c' \n", c);
 		free(temp);
 		exit(1);
 	}
@@ -58,7 +58,7 @@ int	main(int ac, char **av)
 	path[0] = 0;
 	if (ac != 2)
 	{
-		printf("Invalid Arguments\n");
+		ft_printf("Invalid Arguments\n");
 		exit(1);
 	}
 	if (check_map(av[1]) && set_r_c(rc, av[1]))

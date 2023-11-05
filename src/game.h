@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zvakil <zvakil@student.42.fr>              +#+  +:+       +#+        */
+/*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 08:29:07 by zvakil            #+#    #+#             */
-/*   Updated: 2023/11/05 08:49:40 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/11/05 09:27:57 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,7 +152,7 @@ int			callbacks(t_vars *vars);
 int			game_start(int **mat, int *rc);
 int			pos_check_1(int pc, int pv, int key, t_vars *vars);
 int			loadplayers(t_vars *vars);
-int			check_map(char *path);
+int			check_map(char *path, int i);
 int			**matrix_create(int *rc, int **mat, char *path);
 int			*fill_row(int *row, int fd, int lim);
 int			set_r_c(int *rc, char *path);

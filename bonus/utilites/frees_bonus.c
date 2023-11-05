@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   frees_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zvakil <zvakil@student.42.fr>              +#+  +:+       +#+        */
+/*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 10:44:59 by zvakil            #+#    #+#             */
-/*   Updated: 2023/11/05 06:35:11 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/11/05 09:10:08 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	free_vars(t_vars *vars)
 		free_menu(vars->start_screen, vars);
 		free_menu(vars->pause_screen, vars);
 		free_menu(vars->end_lose_screen, vars);
+		free_menu(vars->end_win_screen, vars);
 		free_menu(vars->easteregg_screen, vars);
 		free_animation(vars->cursor, vars);
 		free_animation(vars->easteregg_text, vars);
