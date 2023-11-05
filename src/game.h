@@ -6,7 +6,7 @@
 /*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 08:29:07 by zvakil            #+#    #+#             */
-/*   Updated: 2023/11/05 09:27:57 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/11/05 10:06:42 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,7 @@ void		list_wall(t_vars *vars, t_animation *wall);
 void		wall_set_2(t_vars *vars, int i, int j);
 void		wall_set(t_vars *vars);
 void		wall_rend(t_vars *vars, int x, int y, int index);
+int			char_check(int c);
 void		load_exit0(t_vars *vars, t_animation *food);
 void		load_exit1(t_vars *vars, t_animation *food);
 void		free_portal(t_portal *p, t_vars *vars);
