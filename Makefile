@@ -77,7 +77,9 @@ OBJ = $(SRC:.c=.o)
 
 all: $(LIB)
 	cd mlx && make
-	@$(CC) $(CFLAGS) ./src/maps.c $(LIB) ./get_next_line/gnl.a -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+	cd get_next_line && make
+	cd printf && make
+	@$(CC) $(CFLAGS) ./src/maps.c $(LIB) ./get_next_line/gnl.a ./printf/libftprintf.a -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
 $(LIB): $(OBJ)
 	@ar -rcs $(LIB) $(OBJ)
@@ -91,7 +93,9 @@ B_OBJ = $(B_SRC:.c=.o)
 
 bonus: $(B_LIB)
 	cd mlx && make
-	@$(CC) $(CFLAGS) ./bonus/maps/maps_bonus.c $(B_LIB) ./get_next_line/gnl.a -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(B_NAME)
+	cd get_next_line && make
+	cd printf && make
+	@$(CC) $(CFLAGS) ./bonus/maps/maps_bonus.c $(B_LIB) ./get_next_line/gnl.a ./printf/libftprintf.a -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(B_NAME)
 
 $(B_LIB): $(B_OBJ)
 	@ar -rcs $(B_LIB) $(B_OBJ)
@@ -107,3 +111,5 @@ re: fclean all
 fclean: clean
 	rm -f $(NAME) $(B_NAME) $(LIB) $(B_LIB)
 	make -C mlx clean
+	make -C get_next_line fclean
+	make -C printf fclean

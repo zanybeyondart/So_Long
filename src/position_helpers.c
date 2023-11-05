@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   position_helpers.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
+/*   By: zvakil <zvakil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 11:08:58 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/28 14:04:55 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/11/05 08:49:15 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	pos_check_1(int pc, int pv, int key, t_vars *vars)
 		}
 		i++;
 	}
-	printf("%d\n", ++vars->p1->move_count);
+	ft_printf("%d\n", ++vars->p1->move_count);
 	return (1);
 }
 

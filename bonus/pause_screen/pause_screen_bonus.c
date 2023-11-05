@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pause_screen_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
+/*   By: zvakil <zvakil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 19:37:01 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/28 14:11:04 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/11/05 06:02:45 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,15 +65,23 @@ void	load_pause_anims(t_vars *vars)
 	vars->pause_screen->o1 = malloc(sizeof(t_animation));
 	if (!vars->pause_screen->o1)
 		malloc_er(vars, NULL, NULL);
+	vars->pause_screen->o1->img = NULL;
+	vars->pause_screen->o1->next = NULL;
 	vars->pause_screen->o2 = malloc(sizeof(t_animation));
 	if (!vars->pause_screen->o2)
 		malloc_er(vars, NULL, NULL);
+	vars->pause_screen->o2->img = NULL;
+	vars->pause_screen->o2->next = NULL;
 	vars->pause_screen->o3 = malloc(sizeof(t_animation));
 	if (!vars->pause_screen->o3)
 		malloc_er(vars, NULL, NULL);
+	vars->pause_screen->o3->img = NULL;
+	vars->pause_screen->o3->next = NULL;
 	vars->pause_screen->o4 = malloc(sizeof(t_animation));
 	if (!vars->pause_screen->o4)
 		malloc_er(vars, NULL, NULL);
+	vars->pause_screen->o4->img = NULL;
+	vars->pause_screen->o4->next = NULL;
 	load_pause_o1(vars, vars->pause_screen->o1);
 	load_pause_o2(vars, vars->pause_screen->o2);
 	load_pause_o3(vars, vars->pause_screen->o3);
@@ -90,5 +98,6 @@ void	load_screen_3(t_vars *vars)
 	vars->pause_screen->o3 = NULL;
 	vars->pause_screen->o4 = NULL;
 	vars->pause_screen->option = 1;
+	vars->pause_screen->frame = 0;
 	load_pause_anims(vars);
 }

@@ -3,83 +3,108 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mraspors <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: zvakil <zvakil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/08 21:05:23 by mraspors          #+#    #+#             */
-/*   Updated: 2022/02/22 03:28:41 by mraspors         ###   ########.fr       */
+/*   Created: 2023/08/07 02:10:12 by zvakil            #+#    #+#             */
+/*   Updated: 2023/08/13 16:27:31 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
-char	*fill_buf(char *buf, int loc)
+char	*assigning_line(char *str, int fd)
 {
-	char	*result;
+	char	*buffer;
+	int		r_val;
 
-	result = NULL;
-	if (loc == -1)
-		result = NULL;
-	else
-		result = ft_strjoin(NULL, &buf[loc + 1]);
-	free(buf);
-	buf = NULL;
-	return (result);
-}
-
-char	*create_result(char *buf, int loc)
-{
-	char	c;
-	char	*result;
-
-	if (!buf)
+	buffer = (char *) malloc (BUFFER_SIZE + 1);
+	if (!buffer)
 		return (NULL);
-	if (loc == -1)
+	r_val = 1;
+	while (r_val != 0 && checknl(str, '\n') == 0)
 	{
-		result = ft_strjoin(NULL, buf);
-		return (result);
+		r_val = read (fd, buffer, BUFFER_SIZE);
+		if (r_val == -1)
+		{
+			free(buffer);
+			free(str);
+			return (NULL);
+		}
+		buffer[r_val] = '\0';
+		str = ft_strjoin(str, buffer);
 	}
-	c = buf[loc + 1];
-	buf[loc + 1] = '\0';
-	result = ft_strjoin(NULL, buf);
-	buf[loc + 1] = c;
-	return (result);
+	free(buffer);
+	return (str);
 }
 
-char	*ft_read(int fd, char *buf, int *loc)
+char	*fix_line(char *str)
 {
-	char	s[BUFFER_SIZE + 1];
-	int		read_c;
-	int		i;
+	int		a;
+	int		b;
+	char	*line;
 
-	i = 0;
-	read_c = 0;
-	while (ft_strchr(buf, &i, loc) == -1)
+	b = 0;
+	a = 0;
+	while (str[a] != '\n' && str[a] != '\0')
+		a++;
+	if (str[a] == '\n')
+		a++;
+	line = (char *) malloc (a + 1);
+	if (!line)
+		return (NULL);
+	while (b < a)
 	{
-		read_c = read(fd, s, BUFFER_SIZE);
-		if (read_c <= 0)
-			break ;
-		s[read_c] = '\0';
-		buf = ft_strjoin(buf, s);
+		line[b] = str[b];
+		b++;
 	}
-	return (buf);
+	line[b] = '\0';
+	return (line);
+}
+
+char	*remaining(char *str)
+{
+	char	*temp;
+	int		a;
+	int		len;
+	int		b;
+
+	a = 0;
+	while (str[a] != '\n' && str[a] != '\0')
+		a++;
+	if (str[a] == '\n')
+		a++;
+	len = ft_strlen(str) - a;
+	if (len == 0)
+	{
+		temp = (char *) malloc (1);
+		temp[0] = '\0';
+		free(str);
+		return (temp);
+	}
+	b = 0;
+	temp = (char *)malloc (len + 1);
+	while (str[a] != '\0')
+		temp[b++] = str[a++];
+	temp[b] = '\0';
+	free(str);
+	return (temp);
 }
 
 char	*get_next_line(int fd)
 {
-	static char	*buf[1024];
-	char		*result;
-	int			loc;
+	static char	*str[4096];
+	char		*line;
 
-	loc = 0;
-	result = NULL;
-	if (fd < 0 || BUFFER_SIZE <= 0 || fd > 1024)
+	if (fd < 0 || BUFFER_SIZE < 0)
 		return (NULL);
-	buf[fd] = ft_read(fd, buf[fd], &loc);
-	if (buf[fd] == NULL)
+	str[fd] = assigning_line(str[fd], fd);
+	if (ft_strlen(str[fd]) == 0)
+	{
+		free(str[fd]);
+		str[fd] = NULL;
 		return (NULL);
-	result = create_result(buf[fd], loc);
-	buf[fd] = fill_buf(buf[fd], loc);
-	if (result[0] == '\0')
-		result = NULL;
-	return (result);
+	}
+	line = fix_line(str[fd]);
+	str[fd] = remaining(str[fd]);
+	return (line);
 }

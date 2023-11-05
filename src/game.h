@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
+/*   By: zvakil <zvakil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 08:29:07 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/28 13:59:19 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/11/05 08:49:40 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <fcntl.h>
 # include <strings.h>
 # include "../get_next_line/get_next_line.h"
+# include "../printf/ft_printf.h"
 
 # define SPEED	15
 # define W	13
@@ -120,7 +121,6 @@ void		d_anim_helper(t_vars *vars, void *img, int x, int y);
 void		matrix_free(int **mat, int rows);
 void		free_map(t_map *map);
 void		error_return(int er, int fd, char *temp, char c);
-void		path_valid(int **mat, int i, int j, int *path);
 void		list_wall(t_vars *vars, t_animation *wall);
 void		wall_set_2(t_vars *vars, int i, int j);
 void		wall_set(t_vars *vars);
@@ -140,7 +140,7 @@ void		check_errors(int *rc, int **mat);
 void		malloc_er(t_vars *vars, int **mat, int *rc);
 void		game_checks(t_vars *vars);
 void		mediator(char *path, int **mat, int *index, int *rc);
-void		path_valid(int **mat, int i, int j, int *path);
+void		path_valid(t_map *mat, int i, int j, int *path);
 void		main_display(t_vars *vars);
 char		*pather(char *main, int frame, char *ext, char *path);
 t_box		wall_bound(t_vars *vars, int key, int i, int j);

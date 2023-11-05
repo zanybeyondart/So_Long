@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checks.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
+/*   By: zvakil <zvakil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 09:42:55 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/21 15:33:14 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/11/05 07:06:23 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,21 +38,24 @@ void	game_checks(t_vars *vars)
 
 void	mediator(char *path, int **mat, int *index, int *rc)
 {
-	int	**temp;
-	int	er[1];
+	t_map	*temp;
+	int		er[1];
 
 	temp = NULL;
+	temp = malloc(sizeof(t_map));
+	temp->mat = NULL;
+	temp->rc = NULL;
 	er[0] = 0;
-	temp = matrix_create(rc, temp, path);
+	temp->mat = matrix_create(rc, mat, path);
+	temp->rc = rc;
 	path_valid(temp, index[0], index[1], er);
 	if (er[0] != 1)
 	{
 		printf("No Valid Path\n");
-		matrix_free(mat, rc[0]);
-		matrix_free(temp, rc[0]);
+		free_map(temp);
 		exit(1);
 	}
-	matrix_free(temp, rc[0]);
+	free_map(temp);
 }
 
 int	ulti_path_check(int **mat, char *path, int *start, int *rc)
@@ -71,16 +74,16 @@ int	ulti_path_check(int **mat, char *path, int *start, int *rc)
 	return (ulti_path_check(mat, path, start, rc));
 }
 
-void	path_valid(int **mat, int i, int j, int *path)
+void	path_valid(t_map *mat, int i, int j, int *path)
 {
-	if (i < 0 || j < 0 || i >= 5 || j >= 13 || mat[i][j] == 1)
+	if (i < 0 || j < 0 || i >= mat->rc[0] || j >= mat->rc[1] || mat->mat[i][j] == 1)
 		return ;
-	if (mat[i][j] == E)
+	if (mat->mat[i][j] == E)
 	{
 		path[0] = 1;
 		return ;
 	}
-	mat[i][j] = 1;
+	mat->mat[i][j] = 1;
 	path_valid(mat, i - 1, j, path);
 	path_valid(mat, i + 1, j, path);
 	path_valid(mat, i, j - 1, path);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utilites_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
+/*   By: zvakil <zvakil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 14:03:02 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/28 14:11:32 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/11/05 05:39:36 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	nuller(t_vars *vars)
 {
+	vars->p1 = NULL;
 	vars->wall = NULL;
 	vars->base = NULL;
-	vars->p1 = NULL;
 	vars->exit = NULL;
 	vars->food = NULL;
 	vars->enemies = NULL;
@@ -28,6 +28,9 @@ void	nuller(t_vars *vars)
 	vars->easteregg_screen = NULL;
 	vars->end_lose_screen = NULL;
 	vars->end_win_screen = NULL;
+	vars->power = NULL;
+	vars->pause_screen = NULL;
+	vars->easteregg_text = NULL;
 }
 
 char	*pather(char *main, int frame, char *ext, char *path)

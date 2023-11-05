@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_init_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
+/*   By: zvakil <zvakil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 17:48:14 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/28 14:11:11 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/11/05 05:54:05 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@ void	p1_nulls(t_vars *vars)
 	vars->p1->run_l = NULL;
 	vars->p1->death_l = NULL;
 	vars->p1->death_r = NULL;
+	vars->p1->win_r = NULL;
+	vars->p1->win_l = NULL;
+	vars->p1->dir = 1;
+	vars->p1->move = 0;
+	vars->p1->move_count = 0;
 }
 
 void	load_p1(t_vars *vars)
@@ -34,6 +39,7 @@ void	load_p1(t_vars *vars)
 		malloc_er(vars, NULL, NULL);
 	vars->p1->move_count = 0;
 	vars->p1->dir = 1;
+	vars->p1->move = 0;
 	while (i < vars->map->rc[0])
 	{
 		while (j < vars->map->rc[1])

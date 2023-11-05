@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   easteregg_screen_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
+/*   By: zvakil <zvakil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 19:37:01 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/28 15:56:12 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/11/05 06:31:49 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,23 @@ void	load_easteregg_anims(t_vars *vars)
 	vars->easteregg_screen->o1 = malloc(sizeof(t_animation));
 	if (!vars->easteregg_screen->o1)
 		malloc_er(vars, NULL, NULL);
+	vars->easteregg_screen->o1->img = NULL;
+	vars->easteregg_screen->o1->next = NULL;
 	vars->easteregg_screen->o2 = malloc(sizeof(t_animation));
 	if (!vars->easteregg_screen->o2)
 		malloc_er(vars, NULL, NULL);
+	vars->easteregg_screen->o2->img = NULL;
+	vars->easteregg_screen->o2->next = NULL;
 	vars->cursor = malloc(sizeof(t_animation));
 	if (!vars->cursor)
 		malloc_er(vars, NULL, NULL);
+	vars->cursor->img = NULL;
+	vars->cursor->next = NULL;
 	vars->easteregg_text = malloc(sizeof(t_animation));
 	if (!vars->easteregg_text)
 		malloc_er(vars, NULL, NULL);
+	vars->easteregg_text->img = NULL;
+	vars->easteregg_text->next = NULL;
 	load_easteregg_o1(vars, vars->easteregg_screen->o1);
 	load_easteregg_o2(vars, vars->easteregg_screen->o2);
 	load_cursor(vars, vars->cursor);
@@ -39,7 +47,10 @@ void	load_screen_6(t_vars *vars)
 		malloc_er(vars, NULL, NULL);
 	vars->easteregg_screen->o1 = NULL;
 	vars->easteregg_screen->o2 = NULL;
+	vars->easteregg_screen->o3 = NULL;
+	vars->easteregg_screen->o4 = NULL;
 	vars->easteregg_screen->option = 1;
+	vars->easteregg_screen->frame = 0;
 	load_easteregg_anims(vars);
 }
 

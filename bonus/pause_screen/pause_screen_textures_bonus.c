@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pause_screen_textures_bonus.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
+/*   By: zvakil <zvakil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 12:35:30 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/28 14:11:06 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/11/05 05:34:07 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	load_pause_o1(t_vars *vars, t_animation *sprite)
 		path = pather("./textures/pause_screen/o1/", i, ".xpm", path);
 		if (path == NULL)
 		{
-			vars->start_screen->frame = i;
 			break ;
 		}
 		else
