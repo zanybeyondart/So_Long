@@ -6,7 +6,7 @@
 /*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 14:17:16 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/28 14:10:49 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/11/06 20:50:45 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,29 @@ int	en_check_inter(t_box temp, int pv, int pc)
 	return (0);
 }
 
-t_box	en_bound(t_vars *vars, t_enem_info *enemy)
+t_box	en_bound_die(t_vars *vars, t_enem_info *enemy)
 {
 	t_box	temp;
 
-	temp.m_min = enemy->x;
-	temp.m_max = temp.m_min + vars->enemies->right_anim->w;
-	temp.m_bd = vars->enemies->right_anim->h;
-	temp.min = enemy->y;
-	temp.max = temp.min + vars->enemies->right_anim->h;
+	temp.m_min = enemy->y;
+	temp.m_max = temp.m_min + vars->enemies->right_anim->h;
+	temp.m_bd = vars->p1->run->h;
+	temp.min = enemy->x;
+	temp.max = temp.min + vars->enemies->right_anim->w;
 	temp.bd = vars->p1->run->w;
+	return (temp);
+}
+
+t_box	en_bound_power(t_vars *vars, t_enem_info *enemy)
+{
+	t_box	temp;
+
+	temp.m_min = enemy->y;
+	temp.m_max = temp.m_min + vars->enemies->right_anim->h;
+	temp.m_bd = vars->power->anim->h;
+	temp.min = enemy->x;
+	temp.max = temp.min + vars->enemies->right_anim->w;
+	temp.bd = vars->power->anim->w;
 	return (temp);
 }
 
@@ -56,15 +69,15 @@ void	enemy_updates(t_enem_info *enemy, t_vars *vars)
 	if (enemy)
 	{
 		enemy_updates(enemy->next, vars);
-		if (en_check_inter(en_bound(vars, enemy), vars->p1->x, vars->p1->y)
+		if (en_check_inter(en_bound_die(vars, enemy), vars->p1->y, vars->p1->x)
 			&& enemy->alive == 0)
 			death_seq(vars);
 		if (enemy->x + (15 * enemy->dir) < enemy->l_wall
 			|| (enemy->x + vars->enemies->right_anim->w)
 			+ (15 * enemy->dir) > enemy->r_wall)
 			enemy->dir *= -1;
-		if (en_check_inter(en_bound(vars, enemy),
-				vars->power->x, vars->power->y) && enemy->alive == 0)
+		if (en_check_inter(en_bound_power(vars, enemy),
+				vars->power->y, vars->power->x) && enemy->alive == 0)
 		{
 			vars->power->spawn = 0;
 			vars->power->x = 0;

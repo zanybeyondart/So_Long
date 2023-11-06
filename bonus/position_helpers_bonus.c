@@ -6,7 +6,7 @@
 /*   By: zvakil <zvakil@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 11:08:58 by zvakil            #+#    #+#             */
-/*   Updated: 2023/10/28 14:10:24 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/11/06 21:44:04 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,18 @@ int	check_inter(t_box temp, int pv, int pc)
 	return (0);
 }
 
+int	wall_pos(int key, int i, int j, t_vars *vars)
+{
+	if (key == W)
+		return (i * 60 + vars->wall->h);
+	else if (key == D)
+		return (j * 60 - vars->p1->run->w - 2);
+	else if (key == S)
+		return (i * 60 - vars->p1->run->h - 12);
+	else
+		return (j * 60 + vars->wall->w);
+}
+
 int	pos_check_1(int pc, int pv, int key, t_vars *vars)
 {
 	int	i;
@@ -42,7 +54,7 @@ int	pos_check_1(int pc, int pv, int key, t_vars *vars)
 		{
 			if (vars->map->mat[i][j] == 1
 			&& check_inter(wall_bound(vars, key, i, j), pv, pc))
-				return (0);
+				return (wall_pos(key, i, j, vars));
 			if (vars->map->mat[i][j] == C
 				&& check_inter(col_bound(vars, key, i, j), pv, pc))
 				vars->map->mat[i][j] = -90;
@@ -55,23 +67,19 @@ int	pos_check_1(int pc, int pv, int key, t_vars *vars)
 		i++;
 	}
 	vars->p1->move_count++;
-	return (1);
+	return (pv);
 }
 
 void	update_pos(int keycode, t_player *p1, t_vars *vars)
 {
 	if (keycode == W)
-		if (pos_check_1(p1->x, p1->y - SPEED, keycode, vars))
-			p1->y -= SPEED;
+		p1->y = pos_check_1(p1->x, p1->y - SPEED, keycode, vars);
 	if (keycode == S)
-		if (pos_check_1(p1->x, p1->y + SPEED, keycode, vars))
-			p1->y += SPEED;
+		p1->y = pos_check_1(p1->x, p1->y + SPEED, keycode, vars);
 	if (keycode == A)
-		if (pos_check_1(p1->y, p1->x - SPEED, keycode, vars))
-			p1->x -= SPEED;
+		p1->x = pos_check_1(p1->y, p1->x - SPEED, keycode, vars);
 	if (keycode == D)
-		if (pos_check_1(p1->y, p1->x + SPEED, keycode, vars))
-			p1->x += SPEED;
+		p1->x = pos_check_1(p1->y, p1->x + SPEED, keycode, vars);
 	if (keycode == A)
 		p1->dir = -1;
 	if (keycode == D)
