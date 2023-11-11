@@ -150,15 +150,12 @@ typedef struct s_vars {
 
 typedef struct s_box
 {
-	int	pv;
-	int	pc;
 	int	m_min;
 	int	m_max;
 	int	m_bd;
 	int	bd;
 	int	min;
 	int	max;
-	int	er;
 }t_box;
 
 typedef struct s_map_err{
