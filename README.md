@@ -8,7 +8,7 @@
 - [Updates and Development](https://github.com/zanybeyondart/So_Long#updates-and-development)
 - [Installing](https://github.com/zanybeyondart/So_Long#installing)
 
-#### [So_Long](https://github.com/zanybeyondart/So_Long#so_long-guide-1)
+#### [So_Long](https://github.com/zanybeyondart/So_Long#so_long-guide)
 - [Understanding MiniLibX](https://github.com/zanybeyondart/So_Long#understanding-minilibx)
   - [Getting Started](https://github.com/zanybeyondart/So_Long#getting-started)
     - [Pixel Put Project](https://github.com/zanybeyondart/So_Long#pixelput-project-understanding-graphics)
