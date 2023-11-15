@@ -2,7 +2,7 @@
 
 ### Table of Contents
 
-#### [Dino Wars](https://github.com/zanybeyondart/So_Long/blob/main/README.md#dino-wars-1)
+#### [Dino Wars](https://github.com/zanybeyondart/So_Long#dino-wars-1)
 - [Gameplay and Graphics](https://github.com/zanybeyondart/So_Long#gameplay-and-graphics)
 - [Game Logic](https://github.com/zanybeyondart/So_Long#game-logic)
 - [Updates and Development](https://github.com/zanybeyondart/So_Long#updates-and-development)
