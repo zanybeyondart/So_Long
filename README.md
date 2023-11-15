@@ -19,18 +19,7 @@
 		- [Examples](https://github.com/zanybeyondart/So_Long#examples)
 			-[Quitting the program](https://github.com/zanybeyondart/So_Long#quitting-the-program)
 			-[Moving Box with Arrow Key](https://github.com/zanybeyondart/So_Long#moving-box-using-keys)
-		-[mlx_clear_window() & mlx_do_sync()](https://github.com/zanybeyondart/So_Long#mlx_clear_window--mlx_do_sync)
-		-[Concluding your first program](https://github.com/zanybeyondart/So_Long#concluding-your-first-program)
-	-[Understanding textures and Sprites](https://github.com/zanybeyondart/So_Long#understanding-textures--sprites)
-		-[How to create perfect texture and Sprites](https://github.com/zanybeyondart/So_Long#how-to-create-perfect-textures-and-sprites)
-	-[Importing and Rendering Textures in MLX](https://github.com/zanybeyondart/So_Long#importing-and-rendering-textures-in-mlx)
-		-[Program 2.0](https://github.com/zanybeyondart/So_Long#program-20)
-	-[Collision and Hit Boxes](https://github.com/zanybeyondart/So_Long#collisions-and-hit-boxes)
-		-[Understanding your resources](https://github.com/zanybeyondart/So_Long#understanding-your-resources)
-		-[Tips and Tricks](https://github.com/zanybeyondart/So_Long#tips-and-tricks)
-	-[Animation](https://github.com/zanybeyondart/So_Long#animation)
-		-[Pseudo Code](https://github.com/zanybeyondart/So_Long#pseudo-code)
--[Conclusion](https://github.com/zanybeyondart/So_Long#conclusion)
+
 
 # Dino Wars
 Dino Wars is a game produced by me for my So_Long project at 42, Abu Dhabi. This project is a very small 2D game.
