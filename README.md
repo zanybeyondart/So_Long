@@ -1,14 +1,14 @@
 ![DINO WARS](https://github.com/zanybeyondart/ReadMeEditor/assets/124681155/c7f8cbe5-66b0-41c0-8a3e-ed38c4e23a23)
 
-# Table of Contents
+### Table of Contents
 
-## [Dino Wars](https://github.com/zanybeyondart/So_Long/blob/main/README.md#dino-wars)
+#### [Dino Wars](https://github.com/zanybeyondart/So_Long/blob/main/README.md#dino-wars-1)
 - [Gameplay and Graphics](https://github.com/zanybeyondart/So_Long#gameplay-and-graphics)
 - [Game Logic](https://github.com/zanybeyondart/So_Long#game-logic)
 - [Updates and Development](https://github.com/zanybeyondart/So_Long#updates-and-development)
 - [Installing](https://github.com/zanybeyondart/So_Long#installing)
 
-## [So_Long](https://github.com/zanybeyondart/So_Long#so_long-guide)
+#### [So_Long](https://github.com/zanybeyondart/So_Long#so_long-guide-1)
 - [Understanding MiniLibX](https://github.com/zanybeyondart/So_Long#understanding-minilibx)
   - [Getting Started](https://github.com/zanybeyondart/So_Long#getting-started)
     - [Pixel Put Project](https://github.com/zanybeyondart/So_Long#pixelput-project-understanding-graphics)
@@ -33,7 +33,7 @@
 - [Animation](https://github.com/zanybeyondart/So_Long#animation)
   - [Pseudo Code](https://github.com/zanybeyondart/So_Long#pseudo-code)
 
-## [Conclusion](https://github.com/zanybeyondart/So_Long#conclusion-1)
+#### [Conclusion](https://github.com/zanybeyondart/So_Long#conclusion-1)
 
 
 # Dino Wars
