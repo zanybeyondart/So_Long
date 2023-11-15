@@ -1,7 +1,7 @@
 ![DINO WARS](https://github.com/zanybeyondart/ReadMeEditor/assets/124681155/c7f8cbe5-66b0-41c0-8a3e-ed38c4e23a23)
 
-### Table of Contents  
-[Dino Wars](#dino_wars)  
+### Table of Contents 
+[Dino Wars](https://github.com/zanybeyondart/So_Long/blob/main/README.md#dino-wars)
 [Emphasis](#emphasis)
 
 # Dino Wars
