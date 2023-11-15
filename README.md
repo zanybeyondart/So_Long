@@ -1,5 +1,6 @@
 ![DINO WARS](https://github.com/zanybeyondart/ReadMeEditor/assets/124681155/c7f8cbe5-66b0-41c0-8a3e-ed38c4e23a23)
 
+[[_TOC_]]
 
 # Dino Wars
 Dino Wars is a game produced by me for my So_Long project at 42, Abu Dhabi. This project is a very small 2D game.
