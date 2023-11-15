@@ -498,7 +498,7 @@ To calculate need to see that the start and the end of the **Car** i.e **car->x*
 
 **BUT** the above condition should only be valid when **car->y** and **car->y + car->h** does not fall in the range of **wall->y and wall->y + wall->h**
 
-<img src="https://github.com/zanybeyondart/ReadMeEditor/assets/124681155/e7ea41f0-f928-4a3c-b232-499a8806eeb7" width="400"/>
+<img src="https://github.com/zanybeyondart/ReadMeEditor/assets/124681155/e7ea41f0-f928-4a3c-b232-499a8806eeb7" width="600"/>
 
 
 This was a simple way of how just using these 4 variables you can control any collision, event, or automated movements
