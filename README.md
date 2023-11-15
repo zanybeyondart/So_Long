@@ -2,6 +2,7 @@
 
 # Table of Contents 
 - [Dino Wars](https://github.com/zanybeyondart/So_Long/blob/main/README.md#dino-wars)
+	- [Gameplay and Graphics](https://github.com/zanybeyondart/So_Long#gameplay-and-graphics)
 
 # Dino Wars
 Dino Wars is a game produced by me for my So_Long project at 42, Abu Dhabi. This project is a very small 2D game.
