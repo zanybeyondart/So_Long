@@ -33,7 +33,7 @@
 - [Animation](https://github.com/zanybeyondart/So_Long#animation)
   - [Pseudo Code](https://github.com/zanybeyondart/So_Long#pseudo-code)
 
-## [Conclusion](https://github.com/zanybeyondart/So_Long#conclusion)
+## [Conclusion](https://github.com/zanybeyondart/So_Long#conclusion-1)
 
 
 # Dino Wars
